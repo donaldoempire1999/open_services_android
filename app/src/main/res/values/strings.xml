@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Open Services</string>
+    //My strings
+    <string name="jobs">Jobs</string>
+    <string name="account">Account</string>
+    <string name="messages">Messages</string>
+    <string name="search">Search</string>
+    <string name="contracts">Contracts</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="signin">Sign In</string>
+    <string name="forgot_password">Forgot password ?</string>
+    <string name="remember_me">Remember me</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+</resources>
