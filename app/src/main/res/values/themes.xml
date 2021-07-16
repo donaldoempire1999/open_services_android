@@ -18,4 +18,18 @@
     <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash_screen</item>
     </style>
+
+    //Edit text
+    <style name="CustomEditText">
+        <item name="android:background">@drawable/rounded_edit_text</item>
+    </style>
+
+    //Scroll bar
+    <style name="CustomScrollBar">
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scroller_style</item>
+    </style>
 </resources>

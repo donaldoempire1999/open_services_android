@@ -1,4 +1,4 @@
-package com.example.openservices.ui.messagefragment;
+package com.example.openservices.ui.messages;
 
 import android.os.Bundle;
 

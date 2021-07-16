@@ -8,16 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.openservices.ui.accountfragment.AccountFragment;
-import com.example.openservices.ui.contractfragment.ContractFragment;
-import com.example.openservices.ui.jobsfragment.JobsFragment;
-import com.example.openservices.ui.messagefragment.ChatFragment;
-import com.example.openservices.ui.searchfragment.SearchFragment;
-import com.example.openservices.ui.signinfragment.SignInFragment;
+import com.example.openservices.ui.contracts.ContractFragment;
+import com.example.openservices.ui.search.SearchJobsFragment;
+import com.example.openservices.ui.signin.SignInFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
-import java.lang.ref.WeakReference;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,14 +35,8 @@ public class MainActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.bottom_menu_contract){
                     fragmentTransaction.replace(R.id.main_frame_layout, new ContractFragment()).commit();
                     return true;
-                }else if (item.getItemId() == R.id.bottom_menu_jobs){
-                    fragmentTransaction.replace(R.id.main_frame_layout, new JobsFragment()).commit();
-                    return true;
                 }else if (item.getItemId() == R.id.bottom_menu_search){
-                    fragmentTransaction.replace(R.id.main_frame_layout, new SearchFragment()).commit();
-                    return true;
-                }else if (item.getItemId() == R.id.bottom_menu_message){
-                    fragmentTransaction.replace(R.id.main_frame_layout, new ChatFragment()).commit();
+                    fragmentTransaction.replace(R.id.main_frame_layout, new SearchJobsFragment()).commit();
                     return true;
                 }else if(item.getItemId() == R.id.bottom_menu_account) {
                     fragmentTransaction.replace(R.id.main_frame_layout, new SignInFragment()).commit();
