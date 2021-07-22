@@ -1,12 +1,20 @@
 package com.example.openservices.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class TaskDescription {
 
+    @SerializedName("difficulty")
     private String difficulty;
+    @SerializedName("priority")
     private int priority;
+    @SerializedName("description")
     private String description;
+    @SerializedName("points")
     private int points;
+    @SerializedName("base_amount")
     private int base_amount;
+    @SerializedName("period")
     private Period period;
 
     public TaskDescription() {

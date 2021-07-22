@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/bottom_menu_contract"
+        android:contentDescription="Contracts"
+        android:iconTint="@color/main_color_200"
+        android:icon="@drawable/ic_contract"
+        android:title="@string/contracts"
+        />
     <item android:id="@+id/bottom_menu_search"
+        android:checked="true"
         android:enabled="true"
         android:contentDescription="Search"
         android:iconTint="@color/main_color_200"
         android:icon="@drawable/ic_search"
         android:title="@string/search"
         />
-    <item android:id="@+id/bottom_menu_contract"
-        android:enabled="true"
-        android:contentDescription="Contracts"
-        android:iconTint="@color/main_color_200"
-        android:icon="@drawable/ic_contract"
-        android:title="@string/contracts"
-        />
     <item android:id="@+id/bottom_menu_account"
-        android:enabled="true"
         android:contentDescription="Account"
         android:iconTint="@color/main_color_200"
         android:icon="@drawable/ic_account"

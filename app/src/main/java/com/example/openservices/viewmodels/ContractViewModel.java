@@ -1,4 +1,6 @@
 package com.example.openservices.viewmodels;
 
-public class ContractViewModel {
+import androidx.lifecycle.ViewModel;
+
+public class ContractViewModel extends ViewModel {
 }

@@ -1,8 +1,12 @@
 package com.example.openservices.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Media {
 
+    @SerializedName("type")
     private String type;
+    @SerializedName("url")
     private String url;
 
     public Media() {

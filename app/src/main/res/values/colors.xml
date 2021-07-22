@@ -54,6 +54,7 @@
     <color name="green_300">#65BF28</color>
     <color name="green_500">#438A11</color>
     //Red colors
+    <color name="red_200_trans">#1AFF2121</color>
     <color name="red_200">#FF2121</color>
     <color name="red_500">#FF2121</color>
     <color name="red_700">#FF2121</color>

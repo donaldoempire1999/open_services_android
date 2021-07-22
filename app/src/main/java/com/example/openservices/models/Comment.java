@@ -1,8 +1,12 @@
 package com.example.openservices.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Comment {
 
+    @SerializedName("user_who_comment")
     private User user_who_comment;
+    @SerializedName("text")
     private String text;
 
     public Comment() {

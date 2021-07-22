@@ -1,25 +1,39 @@
 package com.example.openservices.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
-import java.util.Date;
 
 public class User {
-    private Category category;
-    private Person person;
-    private Address address;
-    private Entreprise entreprise;
-    private Cv cv;
-    private String mdp;
-    private String image_url;
-    private String email;
-    private int phone_number;
 
-    private Date register_date;
+    @SerializedName("category")
+    private Category category;
+    @SerializedName("address")
+    private Address address;
+//    @SerializedName("person")
+//    private Person person;
+    @SerializedName("entreprise")
+    private Entreprise entreprise;
+    @SerializedName("cv")
+    private Cv cv;
+    @SerializedName("register_date")
+    private String register_date;
+    @SerializedName("status")
     private String status;
+    @SerializedName("contracts")
     private ArrayList<Contract> contracts;
+    @SerializedName("_id")
     private String _id;
-    private ArrayList<Publication> publications;
-    private int __v;
+    @SerializedName("publications")
+    private ArrayList<String> publications;
+    @SerializedName("email")
+    private String email;
+    @SerializedName("phone_number")
+    private String phone_number;
+    @SerializedName("__v")
+    private int version;
+//    @SerializedName("image_url")
+//    private String image_url;
 
     public User() {
     }
@@ -30,14 +44,6 @@ public class User {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     public Address getAddress() {
@@ -64,43 +70,11 @@ public class User {
         this.cv = cv;
     }
 
-    public String getMdp() {
-        return mdp;
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getPhone_number() {
-        return phone_number;
-    }
-
-    public void setPhone_number(int phone_number) {
-        this.phone_number = phone_number;
-    }
-
-    public Date getRegister_date() {
+    public String getRegister_date() {
         return register_date;
     }
 
-    public void setRegister_date(Date register_date) {
+    public void setRegister_date(String register_date) {
         this.register_date = register_date;
     }
 
@@ -128,19 +102,35 @@ public class User {
         this._id = _id;
     }
 
-    public ArrayList<Publication> getPublications() {
+    public ArrayList<String> getPublications() {
         return publications;
     }
 
-    public void setPublications(ArrayList<Publication> publications) {
+    public void setPublications(ArrayList<String> publications) {
         this.publications = publications;
     }
 
-    public int get__v() {
-        return __v;
+    public String getEmail() {
+        return email;
     }
 
-    public void set__v(int __v) {
-        this.__v = __v;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }

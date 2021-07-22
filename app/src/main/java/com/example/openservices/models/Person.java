@@ -1,11 +1,15 @@
 package com.example.openservices.models;
 
-import java.util.Date;
+import com.google.gson.annotations.SerializedName;
 
 public class Person {
+
+    @SerializedName("first_name")
     private String first_name;
+    @SerializedName("second_name")
     private String second_name;
-    private Date birthday;
+    @SerializedName("birthday")
+    private String birthday;
 
     public Person() {
     }
@@ -26,11 +30,11 @@ public class Person {
         this.second_name = second_name;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 }

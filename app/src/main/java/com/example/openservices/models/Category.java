@@ -1,7 +1,12 @@
 package com.example.openservices.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Category {
+
+    @SerializedName("type_user")
     private String type_user;
+    @SerializedName("role")
     private String role;
 
     public Category() {

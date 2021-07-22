@@ -1,10 +1,17 @@
 package com.example.openservices.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Address {
+    @SerializedName("country")
     private String country;
+    @SerializedName("region")
     private String region;
+    @SerializedName("city")
     private String city;
+    @SerializedName("quarter")
     private String quarter;
+    @SerializedName("bp")
     private int bp;
 
     public Address() {

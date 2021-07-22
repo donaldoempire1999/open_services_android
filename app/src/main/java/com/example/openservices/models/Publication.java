@@ -1,15 +1,26 @@
 package com.example.openservices.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class Publication {
 
+    @SerializedName("likes")
     private int likes;
+    @SerializedName("medias")
     private ArrayList<Media> medias;
+    @SerializedName("comments")
     private ArrayList<Comment> comments;
-    private TaskDescription taskDescription;
+    @SerializedName("task_description")
+    private TaskDescription task_description;
+    @SerializedName("followers")
     private ArrayList<User> followers;
+    @SerializedName("state")
     private String state;
+    @SerializedName("author")
+    private String author;
+    @SerializedName("contract_for_post")
     private Contract contract_for_post;
 
     public Publication() {
@@ -40,11 +51,11 @@ public class Publication {
     }
 
     public TaskDescription getTaskDescription() {
-        return taskDescription;
+        return task_description;
     }
 
-    public void setTaskDescription(TaskDescription taskDescription) {
-        this.taskDescription = taskDescription;
+    public void setTaskDescription(TaskDescription task_description) {
+        this.task_description = task_description;
     }
 
     public ArrayList<User> getFollowers() {
@@ -61,6 +72,14 @@ public class Publication {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public Contract getContract_for_post() {

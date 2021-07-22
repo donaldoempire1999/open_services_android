@@ -1,10 +1,15 @@
 package com.example.openservices.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Entreprise {
+
+    @SerializedName("name")
     private String name;
-    private Date creation_date;
+    @SerializedName("creation_date")
+    private String creation_date;
 
     public Entreprise() {
     }
@@ -17,11 +22,11 @@ public class Entreprise {
         this.name = name;
     }
 
-    public Date getCreation_date() {
+    public String getCreation_date() {
         return creation_date;
     }
 
-    public void setCreation_date(Date creation_date) {
+    public void setCreation_date(String creation_date) {
         this.creation_date = creation_date;
     }
 }

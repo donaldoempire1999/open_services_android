@@ -1,152 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.signin.SignInFragment"
-    android:orientation="vertical"
-    >
-    <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="isLoadingSignIn"
+            type="Boolean" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        >
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/edit_text_email"
-            app:srcCompat="@drawable/logo"
-            android:layout_margin="20dp"
-            />
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edit_text_email"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/edit_text_height"
-            style="@style/CustomEditText"
-            android:hint="@string/email"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:layout_margin="@dimen/application_margin"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/edit_text_password"
-            android:inputType="textEmailSubject"
-            android:textColorHint="@color/light_600"
-            />
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edit_text_password"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/edit_text_height"
-            style="@style/CustomEditText"
-            android:hint="@string/password"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:layout_margin="@dimen/application_margin"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/linear_forgot_password"
-            android:inputType="textPassword"
-            android:textColorHint="@color/light_600"
-            />
-        <LinearLayout
-            android:id="@+id/linear_forgot_password"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:context=".ui.account.SignInFragment"
+        android:orientation="vertical"
+        style="@style/MainBackground">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/button_sign_in"
-            android:layout_margin="@dimen/application_margin"
-            >
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/checkbox_remember_me"
+            android:layout_gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/edit_text_phone"
+                app:srcCompat="@drawable/logo"
+                android:layout_margin="20dp" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_text_phone"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edit_text_height"
+                style="@style/CustomEditText"
+                android:hint="@string/phone"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_margin="@dimen/application_margin"
+                android:enabled="@{isLoadingSignIn ? false : true, default=true}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/edit_text_password"
+                android:inputType="phone"
+                android:textColorHint="@color/light_600" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_text_password"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edit_text_height"
+                style="@style/CustomEditText"
+                android:hint="@string/password"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_margin="@dimen/application_margin"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/linear_forgot_password"
+                android:enabled="@{isLoadingSignIn ? false : true, default=true}"
+                android:inputType="textPassword"
+                android:textColorHint="@color/light_600" />
+
+            <LinearLayout
+                android:id="@+id/linear_forgot_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/remember_me"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:maxLength="16"
-                android:layout_gravity="center"
-                android:gravity="center_vertical"
-                />
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/button_sign_in"
+                android:layout_margin="@dimen/application_margin">
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkbox_remember_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/remember_me"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:maxLength="16"
+                    android:enabled="@{isLoadingSignIn ? false : true, default=true}"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_forgot_password"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:rippleColor="@color/light_300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autoLink="all"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/forgot_password"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue_200"
+                    android:layout_gravity="end"
+                    android:enabled="@{isLoadingSignIn ? false : true, default=true}"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+            </LinearLayout>
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_forgot_password"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                app:rippleColor="@color/light_300"
+                android:id="@+id/button_sign_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autoLink="all"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/forgot_password"
-                android:textAllCaps="false"
-                android:textColor="@color/blue_200"
-                android:layout_gravity="end"
-                android:gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                />
-        </LinearLayout>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_sign_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:backgroundTint="@color/main_color_200"
-            android:layout_margin="@dimen/application_margin"
-            android:text="@string/signin"
-            app:cornerRadius="5dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/relative_go_to_sign_up"
-            />
-        <RelativeLayout
-            android:id="@+id/relative_go_to_sign_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center"
-            android:layout_margin="@dimen/application_margin"
-            >
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_no_account"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:gravity="center"
-                android:layout_centerVertical="true"
-                android:text="Don't have account ?"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_go_to_sign_up"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                app:rippleColor="@color/light_300"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:autoLink="all"
-                android:ellipsize="end"
-                android:maxLines="1"
+                app:backgroundTint="@color/main_color_200"
+                android:layout_margin="@dimen/application_margin"
                 android:text="@string/signin"
-                android:textAllCaps="false"
-                android:textColor="@color/blue_200"
-                android:layout_gravity="end"
-                android:gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_toEndOf="@+id/text_no_account"
-                android:layout_toRightOf="@+id/text_no_account"
-                android:layout_centerVertical="true"
+                app:cornerRadius="5dp"
+                android:visibility="@{isLoadingSignIn ? View.INVISIBLE : View.VISIBLE, default=visible}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/relative_go_to_sign_up" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress_sign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/relative_go_to_sign_up"
+                android:indeterminate="true"
+                app:indicatorColor="@color/main_color_200"
+                android:visibility="@{isLoadingSignIn ? View.VISIBLE : View.GONE, default=gone}"
                 />
-        </RelativeLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+            <RelativeLayout
+                android:id="@+id/relative_go_to_sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center"
+                android:layout_margin="@dimen/application_margin">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_no_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:text="Don't have account ?" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_go_to_sign_up"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:rippleColor="@color/light_300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/signup"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue_200"
+                    android:layout_gravity="end"
+                    android:enabled="@{isLoadingSignIn ? false : true, default=true}"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/text_no_account"
+                    android:layout_toRightOf="@+id/text_no_account"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

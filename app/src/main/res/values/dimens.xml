@@ -8,4 +8,13 @@
     <dimen name="corner_radius">10dp</dimen>
     <dimen name="edit_text_height">50dp</dimen>
     <integer name="shape_angle">-135</integer>
+
+    //Text sizes
+    <dimen name="text_title">18sp</dimen>
+    <dimen name="text_sub_title">16sp</dimen>
+    <dimen name="text_normal">14sp</dimen>
+    <dimen name="text_detail">12sp</dimen>
+
+    //Vignette
+    <dimen name="thumbnail_height">50dp</dimen>
 </resources>

@@ -15,13 +15,44 @@
     </style>
 
     //Splash screen background
-    <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="SplashScreen" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash_screen</item>
+    </style>
+
+    //Main background
+    <style name="MainBackground" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:background">@drawable/background</item>
+    </style>
+
+    //Tab background
+    <style name="TabBackground" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:background">@drawable/tab_background</item>
+    </style>
+
+    //Card background
+    <style name="ItemCardBackground" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:background">@drawable/item_background</item>
     </style>
 
     //Edit text
     <style name="CustomEditText">
         <item name="android:background">@drawable/rounded_edit_text</item>
+    </style>
+
+    //Text
+    <style name="TextStyle">
+        <item name="android:color">@color/dark_500</item>
+    </style>
+
+    //Icon
+    <style name="IconStyle">
+        <item name="android:tint">@color/dark_500</item>
+    </style>
+
+    //Icon clickable
+    <style name="IconCircleClickableStyle">
+        <item name="android:tint">@color/dark_500</item>
+        <item name="android:background">@drawable/ripple_circle</item>
     </style>
 
     //Scroll bar
