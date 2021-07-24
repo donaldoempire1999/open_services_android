@@ -1,7 +1,5 @@
 package com.example.openservices.responses;
 
-import android.media.session.MediaSession;
-
 import com.google.gson.annotations.SerializedName;
 
 public class UserSignInResponse {

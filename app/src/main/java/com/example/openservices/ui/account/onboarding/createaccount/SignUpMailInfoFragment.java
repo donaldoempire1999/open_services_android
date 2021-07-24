@@ -1,13 +1,14 @@
-package com.example.openservices.ui.account;
+package com.example.openservices.ui.account.onboarding.createaccount;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.openservices.R;
-import com.example.openservices.databinding.FragmentSignUpBinding;
+import com.example.openservices.databinding.FragmentSignUpMailInfoBinding;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -15,11 +16,14 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class SignUpFragment extends Fragment {
+public class SignUpMailInfoFragment extends Fragment {
 
-    private FragmentSignUpBinding dataBiding;
+    private FragmentSignUpMailInfoBinding dataBiding;
     private FragmentActivity activity;
     private Context context;
+
+    private boolean isBusiness = false;
+    private boolean isCorrectInputs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,55 +35,63 @@ public class SignUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         dataBiding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_sign_up, container, false);
+                inflater, R.layout.fragment_sign_up_mail_info, container, false);
         View view = dataBiding.getRoot();
         activity = getActivity();
         context = getContext();
 
+        setViews();
         checkInteractions();
 
         return view;
     }
 
     private void checkInteractions() {
-        dataBiding.relativeButtonSignUpBusiness.setOnClickListener(new View.OnClickListener() {
+        dataBiding.buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSignUpBusiness();
+                checkInputs();
             }
         });
-        dataBiding.relativeButtonSignUpPerson.setOnClickListener(new View.OnClickListener() {
+        dataBiding.buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSignUpPerson();
+                goToPrevPage();
             }
         });
-        dataBiding.buttonGoToSignIn.setOnClickListener(new View.OnClickListener() {
+        dataBiding.buttonSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSignIn();
+                goToNextPage();
             }
         });
     }
 
-    private void goToSignIn(){
-        FragmentManager fragmentManager = activity.getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new SignInFragment()).commit();
+    private void checkInputs() {
+        isCorrectInputs = dataBiding.editTextEmail.getText() != null;
+        if (isCorrectInputs){
+            goToNextPage();
+        }else {
+            Toast.makeText(activity, "Please enter all required fields !", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void goToSignUpPerson(){
+    private void goToNextPage() {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        fragmentTransaction.add(R.id.main_frame_layout, new SignUpPersonFragment()).addToBackStack(null).commit();
+        if (isBusiness) {
+            fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpBusinessInfoFragment()).commit();
+        }else{
+            fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpPersonInfoFragment()).commit();
+        }
     }
 
-    private void goToSignUpBusiness(){
+    private void goToPrevPage() {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        fragmentTransaction.add(R.id.main_frame_layout, new SignUpBusinessFragment()).addToBackStack(null).commit();
+        fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpAddressQuarterInfoFragment()).commit();
+    }
+
+    private void setViews() {
     }
 }

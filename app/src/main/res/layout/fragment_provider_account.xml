@@ -12,11 +12,6 @@
         tools:context=".ui.account.BusinessAccountFragment"
         style="@style/MainBackground">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Provider"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

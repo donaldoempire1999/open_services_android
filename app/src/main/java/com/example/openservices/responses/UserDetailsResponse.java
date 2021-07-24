@@ -3,8 +3,6 @@ package com.example.openservices.responses;
 import com.example.openservices.models.User;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
 public class UserDetailsResponse {
 
     @SerializedName("user")

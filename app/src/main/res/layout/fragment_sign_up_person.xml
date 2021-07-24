@@ -12,11 +12,10 @@
         tools:context=".ui.account.SignUpPersonFragment"
         style="@style/MainBackground">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <FrameLayout
+            android:id="@+id/frame_layout_onboarding"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Person" />
+            android:layout_height="match_parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

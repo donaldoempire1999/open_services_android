@@ -63,4 +63,7 @@ dependencies {
 
     //Rounded image view
     implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    //Json formatter
+    implementation 'com.google.code.gson:gson:2.8.6'
 }

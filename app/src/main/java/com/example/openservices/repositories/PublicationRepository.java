@@ -1,9 +1,7 @@
 package com.example.openservices.repositories;
 
-import android.os.Debug;
 import android.util.Log;
 
-import com.example.openservices.models.Publication;
 import com.example.openservices.network.ApiClient;
 import com.example.openservices.network.ApiService;
 import com.example.openservices.responses.PublicationDetailsResponse;
@@ -12,7 +10,6 @@ import com.example.openservices.utilities.ConstantValue;
 
 import org.jetbrains.annotations.NotNull;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;

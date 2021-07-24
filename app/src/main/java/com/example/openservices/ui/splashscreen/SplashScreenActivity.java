@@ -1,12 +1,8 @@
 package com.example.openservices.ui.splashscreen;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.openservices.MainActivity;
-import com.example.openservices.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

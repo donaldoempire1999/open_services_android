@@ -12,4 +12,5 @@ public class ConstantValue {
     public static final String PROFILE_ADMIN = "admin";
     public static final String PROFILE_REQUESTER = "requester";
     public static final String PROFILE_BUSINESS = "provider";
+    public static final String ARG_PARAM_USER = "user param";
 }

@@ -2,14 +2,6 @@ package com.example.openservices.ui;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,15 +11,22 @@ import com.example.openservices.R;
 import com.example.openservices.ui.account.AdminAccountFragment;
 import com.example.openservices.ui.account.BusinessAccountFragment;
 import com.example.openservices.ui.account.RequesterAccountFragment;
+import com.example.openservices.ui.account.SignInFragment;
 import com.example.openservices.ui.contracts.ContractFragment;
 import com.example.openservices.ui.search.SearchPublicationsFragment;
-import com.example.openservices.ui.account.SignInFragment;
 import com.example.openservices.utilities.ConstantValue;
 import com.example.openservices.utilities.SharedPreferencesManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainFragment extends Fragment {
 

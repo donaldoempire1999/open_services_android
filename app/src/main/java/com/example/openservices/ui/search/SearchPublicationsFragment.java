@@ -2,12 +2,6 @@ package com.example.openservices.ui.search;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +10,11 @@ import android.widget.Toast;
 import com.example.openservices.R;
 import com.example.openservices.responses.PublicationResponse;
 import com.example.openservices.viewmodels.PublicationViewModel;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 public class SearchPublicationsFragment extends Fragment {
 

@@ -2,18 +2,19 @@ package com.example.openservices.ui.account;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.openservices.R;
-import com.example.openservices.databinding.FragmentSignUpBinding;
 import com.example.openservices.databinding.FragmentSignUpBusinessBinding;
+import com.example.openservices.ui.account.onboarding.createaccount.SignUpAccountInfoFragment;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class SignUpBusinessFragment extends Fragment {
 
@@ -36,9 +37,17 @@ public class SignUpBusinessFragment extends Fragment {
         activity = getActivity();
         context = getContext();
 
+        setViews();
         checkInteractions();
 
         return view;
+    }
+
+    private void setViews() {
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_trans, R.anim.exit_trans, R.anim.pop_enter_trans, R.anim.pop_exit_trans);
+        fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpAccountInfoFragment()).commit();
     }
 
     private void checkInteractions() {

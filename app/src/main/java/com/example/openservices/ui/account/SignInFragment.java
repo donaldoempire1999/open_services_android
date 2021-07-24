@@ -2,15 +2,6 @@ package com.example.openservices.ui.account;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +14,14 @@ import com.example.openservices.responses.UserSignInResponse;
 import com.example.openservices.utilities.ConstantValue;
 import com.example.openservices.utilities.SharedPreferencesManager;
 import com.example.openservices.viewmodels.UserViewModel;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 public class SignInFragment extends Fragment {
 
