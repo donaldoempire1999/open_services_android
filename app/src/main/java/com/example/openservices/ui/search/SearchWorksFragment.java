@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.openservices.R;
@@ -71,7 +75,7 @@ public class SearchWorksFragment extends Fragment {
 
         if (activity != null) {
             doInitializations();
-            getData();
+            loadFilterSettings();
             setupAdapters();
             loadPostsUsers();
             checkInteractions();
@@ -103,14 +107,76 @@ public class SearchWorksFragment extends Fragment {
         bottomSheet.setDismissWithAnimation(true);
         bottomSheet.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundResource(android.R.color.transparent);
 
-        getFilterSettings();
+        loadFilterSettings();
         bottomSheet.findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveFilterSettings();
                 bottomSheet.dismiss();
+                Toast.makeText(activity, "Filter settings saved !", Toast.LENGTH_SHORT).show();
+                reloadPostUsers();
             }
         });
+        RadioGroup radioGroup = bottomSheet.findViewById(R.id.radio_group);
+        CheckBox checkBox = bottomSheet.findViewById(R.id.checkbox_autocomplete_search);
+
+        RadioButton radioButtonProviders = bottomSheet.findViewById(R.id.radio_button_providers);
+        RadioButton radioButtonRequesters = bottomSheet.findViewById(R.id.radio_button_requesters);
+        RadioButton radioButtonPublications = bottomSheet.findViewById(R.id.radio_button_publications);
+
+        if (searchType.equals(ConstantValue.SEARCH_TYPE_POSTS)){
+            assert radioButtonProviders != null;
+            radioButtonProviders.setChecked(false);
+            assert radioButtonRequesters != null;
+            radioButtonRequesters.setChecked(false);
+            assert radioButtonPublications != null;
+            radioButtonPublications.setChecked(true);
+        }else {
+            if (isProvider){
+                assert radioButtonProviders != null;
+                radioButtonProviders.setChecked(true);
+                assert radioButtonRequesters != null;
+                radioButtonRequesters.setChecked(false);
+            }else{
+                assert radioButtonProviders != null;
+                radioButtonProviders.setChecked(false);
+                assert radioButtonRequesters != null;
+                radioButtonRequesters.setChecked(true);
+            }
+            assert radioButtonPublications != null;
+            radioButtonPublications.setChecked(false);
+        }
+        if (radioGroup != null) {
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    if (checkedId == R.id.radio_button_providers){
+                        searchCollection = ConstantValue.SEARCH_COLLECTION_USERS;
+                        searchType = ConstantValue.SEARCH_TYPE_USERS;
+                        isProvider = true;
+                    }else if (checkedId == R.id.radio_button_requesters){
+                        searchCollection = ConstantValue.SEARCH_COLLECTION_USERS;
+                        searchType = ConstantValue.SEARCH_TYPE_USERS;
+                        isProvider = false;
+                    }else {
+                        searchCollection = ConstantValue.SEARCH_COLLECTION_PUBLICATIONS;
+                        searchType = ConstantValue.SEARCH_TYPE_POSTS;
+                    }
+                }
+            });
+        }
+        if (checkBox != null){
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked){
+                        searchMatching = ConstantValue.SEARCH_COLLECTION_KEY_WORD_AUTOCOMPLETE;
+                    }else{
+                        searchMatching = ConstantValue.SEARCH_COLLECTION_KEY_WORD_FACETED;
+                    }
+                }
+            });
+        }
         bottomSheet.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,12 +186,18 @@ public class SearchWorksFragment extends Fragment {
         bottomSheet.show();
     }
 
-    private void getFilterSettings() {
+    private void loadFilterSettings() {
+        searchType = SharedPreferencesManager.getSearchType(activity);
+        searchCollection = SharedPreferencesManager.getSearchCollection(activity);
+        searchMatching = SharedPreferencesManager.getSearchMatching(activity);
+        isProvider = SharedPreferencesManager.getIsProvider(activity);
     }
 
     private void saveFilterSettings() {
-        Toast.makeText(activity, "Filter settings saved !", Toast.LENGTH_SHORT).show();
-        reloadPostUsers();
+        SharedPreferencesManager.saveSearchType(activity, searchType);
+        SharedPreferencesManager.saveSearchCollection(activity, searchCollection);
+        SharedPreferencesManager.saveSearchMatching(activity, searchMatching);
+        SharedPreferencesManager.saveIsProvider(activity, isProvider);
     }
 
     private void gotoSearchPage() {
@@ -325,12 +397,6 @@ public class SearchWorksFragment extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         fragmentTransaction.add(R.id.main_frame_layout, PersonDetailFragment.newInstance(mUsers.get(position).get_id())).addToBackStack(null).commit();
-    }
-
-    private void getData() {
-        searchType = SharedPreferencesManager.getSearchType(activity);
-        if (searchType == null || searchType.isEmpty())
-            searchType = ConstantValue.SEARCH_TYPE_POSTS;
     }
 
     private void doInitializations() {
