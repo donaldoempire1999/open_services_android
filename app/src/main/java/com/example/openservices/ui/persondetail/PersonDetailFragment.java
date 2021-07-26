@@ -10,6 +10,7 @@ import com.example.openservices.R;
 import com.example.openservices.databinding.FragmentPersonDetailBinding;
 import com.example.openservices.models.User;
 import com.example.openservices.utilities.ConstantValue;
+import com.example.openservices.viewmodels.PublicationViewModel;
 import com.example.openservices.viewmodels.UserViewModel;
 
 import androidx.databinding.DataBindingUtil;

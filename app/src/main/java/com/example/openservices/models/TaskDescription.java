@@ -6,8 +6,8 @@ public class TaskDescription {
 
     @SerializedName("title")
     private String title;
-    @SerializedName("difficulty")
-    private String difficulty;
+//    @SerializedName("difficulty")
+//    private String difficulty;
     @SerializedName("priority")
     private int priority;
     @SerializedName("description")
@@ -30,13 +30,13 @@ public class TaskDescription {
         this.title = title;
     }
 
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
+//    public String getDifficulty() {
+//        return difficulty;
+//    }
+//
+//    public void setDifficulty(String difficulty) {
+//        this.difficulty = difficulty;
+//    }
 
     public int getPriority() {
         return priority;

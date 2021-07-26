@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.example.openservices.R;
 import com.example.openservices.databinding.ItemPostPublicationBinding;
 import com.example.openservices.models.Publication;
+import com.example.openservices.viewmodels.UserViewModel;
 
 import org.jetbrains.annotations.NotNull;
 

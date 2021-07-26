@@ -6,6 +6,7 @@ import com.example.openservices.models.User;
 import com.example.openservices.network.ApiClient;
 import com.example.openservices.network.ApiService;
 import com.example.openservices.responses.UserDetailsResponse;
+import com.example.openservices.responses.UserResponse;
 import com.example.openservices.responses.UserSignInResponse;
 import com.example.openservices.responses.UserSignUpResponse;
 import com.example.openservices.utilities.ConstantValue;

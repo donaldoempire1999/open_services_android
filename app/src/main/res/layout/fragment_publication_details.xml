@@ -6,7 +6,7 @@
     <data>
         <variable
             name="publication"
-            type="com.example.openservices.models.Publication" />
+            type="com.example.openservices.models.PublicationDetail" />
         <variable
             name="isLoadingView"
             type="boolean" />
@@ -309,7 +309,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:gravity="start"
-                        android:text="@{publication.taskDescription.description}" />
+                        android:text="@{publication.task_description.description+``}" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -356,7 +356,7 @@
                     android:ellipsize="end"
                     android:maxLines="5"
                     android:gravity="center"
-                    android:text="@{publication.taskDescription.title}"
+                    android:text="@{publication.task_description.description+``}"
                     android:textSize="@dimen/text_sub_title"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -367,7 +367,7 @@
                     android:id="@+id/image_thumbnail"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@{user.image_url, default=`@color/light_200`}"
+                    android:src="@color/light_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

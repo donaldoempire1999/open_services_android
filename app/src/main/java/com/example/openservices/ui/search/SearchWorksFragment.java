@@ -262,7 +262,7 @@ public class SearchWorksFragment extends Fragment {
     private void getData() {
         searchType = SharedPreferencesManager.getSearchType(activity);
         if (searchType == null || searchType.isEmpty())
-            searchType = ConstantValue.SEARCH_TYPE_USERS;
+            searchType = ConstantValue.SEARCH_TYPE_POSTS;
     }
 
     private void doInitializations() {

@@ -64,11 +64,15 @@ public class PublicationRepository {
 
     public LiveData<PublicationDetailsResponse> getPublicationInfo(String token, String id) {
         MutableLiveData<PublicationDetailsResponse> data = new MutableLiveData<>();
-        apiService.getPublicationInfo("Bearer " +token, "60f5995b6dff452ac037e6ff").enqueue(new Callback<PublicationDetailsResponse>() {
+        apiService.getPublicationInfo(token, id).enqueue(new Callback<PublicationDetailsResponse>() {
             @Override
             public void onResponse(@NotNull Call<PublicationDetailsResponse> call, @NotNull Response<PublicationDetailsResponse> response) {
                 Log.e(ConstantValue.TAG, "Good response !");
-                Log.e(ConstantValue.TAG, "API Response : " +response.message());
+                if (response.body() != null) {
+                    if (response.body().getPublications() != null){
+                        Log.e(ConstantValue.TAG, "API Response : " +response.body().getPublications().size());
+                    }
+                }
                 data.setValue(response.body());
             }
 

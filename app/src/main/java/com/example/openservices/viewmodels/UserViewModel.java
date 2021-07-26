@@ -3,6 +3,7 @@ package com.example.openservices.viewmodels;
 import com.example.openservices.models.User;
 import com.example.openservices.repositories.UserRepository;
 import com.example.openservices.responses.UserDetailsResponse;
+import com.example.openservices.responses.UserResponse;
 import com.example.openservices.responses.UserSignInResponse;
 import com.example.openservices.responses.UserSignUpResponse;
 

@@ -17,6 +17,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -58,8 +59,9 @@ public interface ApiService {
     Call<PublicationResponse> getMyPublications();
 
     //Get post info
-    @GET("publications/{id}")
-    Call<PublicationDetailsResponse> getPublicationInfo(@Header("Authorization") String token, @Path("id") String id);
+    @Headers("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjBmNTk5NWI2ZGZmNDUyYWMwMzdlNmZmIiwiaWF0IjoxNjI3MjQwODUzLCJleHAiOjE2MjczMjcyNTN9.-HfLDn_VIdgrPkWDfqeEvJyuYO7wRQ9Ijj3vHIv_wmw")
+    @GET("publications/{id_pub}")
+    Call<PublicationDetailsResponse> getPublicationInfo(@Header("Authorization") String token, @Path("id_pub") String id_pub);
 
     //Search post
 }

@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.openservices.R;
 import com.example.openservices.databinding.FragmentPublicationDetailsBinding;
 import com.example.openservices.models.Publication;
+import com.example.openservices.models.PublicationDetail;
 import com.example.openservices.models.User;
 import com.example.openservices.responses.PublicationDetailsResponse;
 import com.example.openservices.responses.UserDetailsResponse;
@@ -21,6 +22,8 @@ import com.example.openservices.viewmodels.UserViewModel;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -32,7 +35,7 @@ public class PublicationDetailsFragment extends Fragment {
 
     private String publicationId;
 
-    private Publication currentPost;
+    private PublicationDetail currentPost;
     private User currentUser;
     private PublicationViewModel publicationViewModel;
     private UserViewModel userViewModel;
