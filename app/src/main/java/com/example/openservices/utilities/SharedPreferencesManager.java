@@ -60,7 +60,7 @@ public class SharedPreferencesManager {
     }
 
     public static void saveSearchMatching(Activity activity, String searchMatching) {
-        SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_SEARCH_TYPES, MODE_PRIVATE).edit();
+        SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.ARG_PARAM_SEARCH_MATCHING, MODE_PRIVATE).edit();
         prefs.putString("searchMatching", searchMatching);
         prefs.apply();
     }
@@ -73,27 +73,27 @@ public class SharedPreferencesManager {
     }
 
     public static void saveSearchCollection(Activity activity, String searchCollection) {
-        SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_SEARCH_TYPES, MODE_PRIVATE).edit();
+        SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.ARG_PARAM_SEARCH_COLLECTION, MODE_PRIVATE).edit();
         prefs.putString("searchCollection", searchCollection);
         prefs.apply();
     }
 
     public static String getSearchCollection(Activity activity) {
         String data = null;
-        SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.ARG_PARAM_SEARCH_MATCHING, MODE_PRIVATE);
+        SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.ARG_PARAM_SEARCH_COLLECTION, MODE_PRIVATE);
         data = prefs.getString("searchCollection", ConstantValue.SEARCH_COLLECTION_PUBLICATIONS);
         return data;
     }
 
     public static void saveIsProvider(Activity activity, boolean isProvider) {
-        SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_SEARCH_TYPES, MODE_PRIVATE).edit();
+        SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.ARG_PARAM_SEARCH_IS_PROVIDER, MODE_PRIVATE).edit();
         prefs.putBoolean("isProvider", isProvider);
         prefs.apply();
     }
 
     public static boolean getIsProvider(Activity activity) {
         boolean data = true;
-        SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.ARG_PARAM_SEARCH_MATCHING, MODE_PRIVATE);
+        SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.ARG_PARAM_SEARCH_IS_PROVIDER, MODE_PRIVATE);
         data = prefs.getBoolean("isProvider", true);
         return data;
     }
