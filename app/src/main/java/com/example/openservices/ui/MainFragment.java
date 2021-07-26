@@ -13,7 +13,7 @@ import com.example.openservices.ui.account.BusinessAccountFragment;
 import com.example.openservices.ui.account.RequesterAccountFragment;
 import com.example.openservices.ui.account.SignInFragment;
 import com.example.openservices.ui.contracts.ContractFragment;
-import com.example.openservices.ui.search.SearchPublicationsFragment;
+import com.example.openservices.ui.search.SearchWorksFragment;
 import com.example.openservices.utilities.ConstantValue;
 import com.example.openservices.utilities.SharedPreferencesManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -71,43 +71,46 @@ public class MainFragment extends Fragment {
 
     private void getData() {
         ArrayList<String> tempResult = SharedPreferencesManager.getUserInfo(activity);
-        if (!tempResult.isEmpty()){
+        if (!tempResult.isEmpty()) {
             isUserLoaded = true;
             userCategory = tempResult.get(2);
-        }else{
+        } else {
             isUserLoaded = false;
         }
     }
 
-    private void checkFragment(){
+    private void checkFragment() {
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new SearchWorksFragment()).commit();
         navigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (getActivity() != null) {
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentManager fragmentManager = activity.getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     if (item.getItemId() == R.id.bottom_menu_contract) {
                         fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new ContractFragment()).commit();
                         return true;
                     } else if (item.getItemId() == R.id.bottom_menu_search) {
-                        fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new SearchPublicationsFragment()).commit();
+                        fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new SearchWorksFragment()).commit();
                         return true;
                     } else if (item.getItemId() == R.id.bottom_menu_account) {
-                        if (isUserLoaded){
-                            if (userCategory != null){
+                        if (isUserLoaded) {
+                            if (userCategory != null) {
                                 if (userCategory.equals(ConstantValue.PROFILE_ADMIN)) {
                                     fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new AdminAccountFragment()).commit();
                                 } else if (userCategory.equals(ConstantValue.PROFILE_BUSINESS)) {
                                     fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new BusinessAccountFragment()).commit();
                                 } else if (userCategory.equals(ConstantValue.PROFILE_REQUESTER)) {
                                     fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new RequesterAccountFragment()).commit();
-                                }else{
+                                } else {
                                     fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new SignInFragment()).commit();
                                 }
-                            }else{
+                            } else {
                                 fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new SignInFragment()).commit();
                             }
-                        }else{
+                        } else {
                             fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new SignInFragment()).commit();
                         }
                         return true;

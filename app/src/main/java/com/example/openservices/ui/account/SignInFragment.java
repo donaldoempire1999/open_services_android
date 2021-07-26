@@ -80,14 +80,14 @@ public class SignInFragment extends Fragment {
             tempPhone = dataBiding.editTextPhone.getText().toString();
         if (dataBiding.editTextPassword.getText() != null)
             tempPassword = dataBiding.editTextPassword.getText().toString();
-        if (!tempPassword.isEmpty() && !tempPhone.isEmpty()){
+        if (!tempPassword.isEmpty() && !tempPhone.isEmpty()) {
             dataBiding.setIsLoadingSignIn(true);
             userViewModel.signIn(tempPhone, tempPassword).observe(activity, new Observer<UserSignInResponse>() {
                 @Override
                 public void onChanged(UserSignInResponse userSignInResponse) {
-                    if (userSignInResponse != null){
+                    if (userSignInResponse != null) {
                         goToMyProfile(userSignInResponse);
-                    }else{
+                    } else {
                         dataBiding.setIsLoadingSignIn(false);
                         Toast.makeText(activity, "None account found !", Toast.LENGTH_SHORT).show();
                     }
@@ -97,21 +97,21 @@ public class SignInFragment extends Fragment {
     }
 
     private void goToMyProfile(UserSignInResponse userSignInResponse) {
-        userViewModel.getUserInfo(userSignInResponse.getUserId()).observe(activity, new Observer<UserDetailsResponse>() {
+        userViewModel.getUserInfo(SharedPreferencesManager.getUserInfo(activity).get(1), userSignInResponse.getUserId()).observe(activity, new Observer<UserDetailsResponse>() {
             @Override
             public void onChanged(UserDetailsResponse userDetailsResponse) {
                 dataBiding.setIsLoadingSignIn(false);
-                if (userDetailsResponse != null){
+                if (userDetailsResponse != null) {
                     Toast.makeText(activity, "Logged !", Toast.LENGTH_SHORT).show();
                     SharedPreferencesManager.saveUserInfo(activity, userSignInResponse.getUserId(), userSignInResponse.getToken(), userDetailsResponse.getUser().getCategory().getRole());
-                    if (userDetailsResponse.getUser().getCategory().getRole().equals(ConstantValue.PROFILE_ADMIN)){
+                    if (userDetailsResponse.getUser().getCategory().getRole().equals(ConstantValue.PROFILE_ADMIN)) {
                         goToMyAdminProfile();
-                    }else if (userDetailsResponse.getUser().getCategory().getRole().equals(ConstantValue.PROFILE_BUSINESS)){
+                    } else if (userDetailsResponse.getUser().getCategory().getRole().equals(ConstantValue.PROFILE_BUSINESS)) {
                         goToMyBusinessProfile();
-                    }else{
+                    } else {
                         goToMyRequesterProfile();
                     }
-                }else{
+                } else {
                     Toast.makeText(activity, "None account found !", Toast.LENGTH_SHORT).show();
                 }
             }

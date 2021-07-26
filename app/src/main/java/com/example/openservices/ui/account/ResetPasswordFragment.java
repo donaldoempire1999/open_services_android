@@ -57,7 +57,7 @@ public class ResetPasswordFragment extends Fragment {
         });
     }
 
-    private void goToSignIn(){
+    private void goToSignIn() {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
@@ -65,11 +65,11 @@ public class ResetPasswordFragment extends Fragment {
     }
 
     private void tryToResetPassword() {
-        if (dataBiding.editTextEmail.getText() != null && !dataBiding.editTextEmail.getText().toString().isEmpty()){
+        if (dataBiding.editTextEmail.getText() != null && !dataBiding.editTextEmail.getText().toString().isEmpty()) {
             boolean isValid = true;
-            if (isValid){
+            if (isValid) {
                 dataBiding.setIsLoadingReset(true);
-            }else{
+            } else {
                 Toast.makeText(activity, "Please enter valid email !", Toast.LENGTH_SHORT).show();
                 dataBiding.setIsLoadingReset(false);
             }

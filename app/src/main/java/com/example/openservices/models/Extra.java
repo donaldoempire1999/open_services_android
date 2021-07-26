@@ -8,6 +8,10 @@ public class Extra {
     private String title;
     @SerializedName("description")
     private String description;
+    @SerializedName("location")
+    private String location;
+    @SerializedName("image")
+    private String image;
 
     public Extra() {
     }
@@ -26,5 +30,21 @@ public class Extra {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

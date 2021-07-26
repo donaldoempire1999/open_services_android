@@ -9,6 +9,10 @@ import android.widget.Toast;
 
 import com.example.openservices.R;
 import com.example.openservices.databinding.FragmentSignUpMailInfoBinding;
+import com.example.openservices.models.User;
+import com.example.openservices.utilities.ConstantValue;
+import com.example.openservices.utilities.CustomStringChecker;
+import com.example.openservices.utilities.SharedPreferencesManager;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -22,8 +26,8 @@ public class SignUpMailInfoFragment extends Fragment {
     private FragmentActivity activity;
     private Context context;
 
-    private boolean isBusiness = false;
     private boolean isCorrectInputs;
+    private User userToSignUp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,7 @@ public class SignUpMailInfoFragment extends Fragment {
         activity = getActivity();
         context = getContext();
 
+        getData();
         setViews();
         checkInteractions();
 
@@ -68,30 +73,48 @@ public class SignUpMailInfoFragment extends Fragment {
     }
 
     private void checkInputs() {
-        isCorrectInputs = dataBiding.editTextEmail.getText() != null;
-        if (isCorrectInputs){
+        String tempMail = "";
+        //Get edit text info
+        if (dataBiding.editTextEmail.getText() != null)
+            tempMail = dataBiding.editTextEmail.getText().toString();
+        //Check if inputs are correct
+        if (CustomStringChecker.checkStringInput(tempMail, 3) && CustomStringChecker.checkStringEmailInput(tempMail)) {
+            isCorrectInputs = true;
+        } else {
+            isCorrectInputs = false;
+        }
+        if (isCorrectInputs) {
+            userToSignUp.setEmail(tempMail);
+            SharedPreferencesManager.saveSignUpUserInfo(activity, userToSignUp);
             goToNextPage();
-        }else {
-            Toast.makeText(activity, "Please enter all required fields !", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(activity, "Please enter valid required fields !", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void goToNextPage() {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if (isBusiness) {
-            fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpBusinessInfoFragment()).commit();
-        }else{
-            fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpPersonInfoFragment()).commit();
-        }
+        fragmentTransaction.setCustomAnimations(R.anim.enter_trans, R.anim.exit, R.anim.pop_enter_trans, R.anim.pop_exit);
+        fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpFinishFragment()).commit();
     }
 
     private void goToPrevPage() {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpAddressQuarterInfoFragment()).commit();
+        fragmentTransaction.setCustomAnimations(R.anim.pop_enter_trans, R.anim.exit, R.anim.pop_enter_trans, R.anim.exit);
+        if (userToSignUp.getCategory().getRole().equals(ConstantValue.PROFILE_BUSINESS)) {
+            fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpBusinessInfoFragment()).commit();
+        } else {
+            fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpPersonInfoFragment()).commit();
+        }
     }
 
     private void setViews() {
+        dataBiding.setUserToSignUp(userToSignUp);
+    }
+
+    private void getData() {
+        userToSignUp = SharedPreferencesManager.getSignUpUserInfo(activity);
     }
 }

@@ -3,7 +3,7 @@ package com.example.openservices.responses;
 import com.google.gson.annotations.SerializedName;
 
 public class UserSignUpResponse {
-//
+    //
 //    @SerializedName("response_code")
 //    private int response;
     @SerializedName("message")

@@ -1,14 +1,11 @@
 <resources>
     <string name="app_name">Open Services</string>
     //My strings
-    <string name="jobs">Jobs</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="account">Account</string>
     <string name="messages">Messages</string>
-    <string name="search">Search</string>
     <string name="contracts">Contracts</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="signin">Sign In</string>
+    <string name="sign_in">Sign In</string>
     <string name="forgot_password">Forgot password ?</string>
     <string name="remember_me">Remember me</string>
     <string name="password">Password</string>
@@ -17,7 +14,7 @@
     <string name="reset">Reset</string>
     <string name="phone">Phone number</string>
     <string name="follow">Follow</string>
-    <string name="contactinfo">Contact info</string>
+    <string name="contact_info">Contact info</string>
     <string name="report">Report</string>
     <string name="next">Next</string>
     <string name="cancel">Cancel</string>
@@ -36,5 +33,40 @@
     <string name="unknown_error">Unknown error</string>
     <string name="retry">Retry</string>
     <string name="main_activity">Main activity</string>
-    <string name="activity_title">Activity title</string>
+    <string name="title_activity">Title Activity</string>
+    <string name="choose_birth_date">Choose birth date</string>
+    <string name="please_check_your_internet_connexion">Please check your internet connexion</string>
+    <string name="search">Search</string>
+    <string name="jobs">Jobs</string>
+    <string name="filter">Filter</string>
+    <string name="don_t_have_account">Don\'t have account ?</string>
+    <string name="business">Business</string>
+    <string name="person">Person</string>
+    <string name="have_an_account">Have an account ?</string>
+    <string name="sign_up_as">Sign up as</string>
+    <string name="admin">Admin</string>
+    <string name="Button">button</string>
+    <string name="profile_details">Profile details</string>
+    <string name="bio">Bio</string>
+    <string name="skills">Skills</string>
+    <string name="extra">Extra</string>
+    <string name="job_details">Job details</string>
+    <string name="location">Location</string>
+    <string name="description">Description</string>
+    <string name="medias">Medias</string>
+    <string name="comments">Comments</string>
+    <string name="requester">Requester</string>
+    <string name="add_basic_info">Add basic info</string>
+    <string name="add_location_info">Add location info</string>
+    <string name="add_address_info">Add address info</string>
+    <string name="add_business_info">Add business info</string>
+    <string name="add_activities_info">Add activities info</string>
+    <string name="finishing">Finishing</string>
+    <string name="add_mail_info">Add mail info</string>
+    <string name="salary">Salary</string>
+    <string name="posted">Posted</string>
+    <string name="works">Works</string>
+    <string name="apply_candidate">Apply candidate</string>
+    <string name="look_contract">Look contract</string>
+    <string name="please_sign_in_to_get_more_info">Please sign in to get more info</string>
 </resources>

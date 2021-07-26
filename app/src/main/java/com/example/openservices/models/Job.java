@@ -10,6 +10,8 @@ public class Job {
     private String title;
     @SerializedName("description")
     private String description;
+    @SerializedName("image")
+    private String image;
 
     public Job() {
     }
@@ -36,5 +38,13 @@ public class Job {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

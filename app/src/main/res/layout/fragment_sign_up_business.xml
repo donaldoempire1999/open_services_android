@@ -2,20 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/MainBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.account.SignUpBusinessFragment"
-        style="@style/MainBackground">
-        
+        tools:context=".ui.account.SignUpBusinessFragment">
+
         <FrameLayout
             android:id="@+id/frame_layout_onboarding"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+    </data>
 </layout>

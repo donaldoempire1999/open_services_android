@@ -20,7 +20,7 @@ public class PublicationRepository {
 
     private ApiService apiService;
 
-    public PublicationRepository(){
+    public PublicationRepository() {
         apiService = ApiClient.getRetrofit().create(ApiService.class);
     }
 
@@ -62,17 +62,18 @@ public class PublicationRepository {
         return data;
     }
 
-    public LiveData<PublicationDetailsResponse> getPublicationInfo(String id) {
+    public LiveData<PublicationDetailsResponse> getPublicationInfo(String token, String id) {
         MutableLiveData<PublicationDetailsResponse> data = new MutableLiveData<>();
-        apiService.getPublicationInfo(id).enqueue(new Callback<PublicationDetailsResponse>() {
+        apiService.getPublicationInfo("Bearer " +token, "60f5995b6dff452ac037e6ff").enqueue(new Callback<PublicationDetailsResponse>() {
             @Override
-            public void onResponse(Call<PublicationDetailsResponse> call, Response<PublicationDetailsResponse> response) {
+            public void onResponse(@NotNull Call<PublicationDetailsResponse> call, @NotNull Response<PublicationDetailsResponse> response) {
                 Log.e(ConstantValue.TAG, "Good response !");
+                Log.e(ConstantValue.TAG, "API Response : " +response.message());
                 data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<PublicationDetailsResponse> call, Throwable t) {
+            public void onFailure(@NotNull Call<PublicationDetailsResponse> call, @NotNull Throwable t) {
                 Log.e(ConstantValue.TAG, "Bad response !");
                 Log.e(ConstantValue.TAG, "Error : " + t.getMessage());
                 data.setValue(null);

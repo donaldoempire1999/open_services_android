@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class TaskDescription {
 
+    @SerializedName("title")
+    private String title;
     @SerializedName("difficulty")
     private String difficulty;
     @SerializedName("priority")
@@ -18,6 +20,14 @@ public class TaskDescription {
     private Period period;
 
     public TaskDescription() {
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDifficulty() {

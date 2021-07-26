@@ -2,15 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/MainBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.contracts.ContractFragment"
-        style="@style/MainBackground">
+        tools:context=".ui.contracts.ContractFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView
@@ -19,4 +15,8 @@
             android:text="@string/contracts" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+    </data>
 </layout>

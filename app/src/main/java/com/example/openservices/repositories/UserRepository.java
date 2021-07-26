@@ -6,12 +6,13 @@ import com.example.openservices.models.User;
 import com.example.openservices.network.ApiClient;
 import com.example.openservices.network.ApiService;
 import com.example.openservices.responses.UserDetailsResponse;
-import com.example.openservices.responses.UserResponse;
 import com.example.openservices.responses.UserSignInResponse;
 import com.example.openservices.responses.UserSignUpResponse;
 import com.example.openservices.utilities.ConstantValue;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -23,20 +24,21 @@ public class UserRepository {
 
     private ApiService apiService;
 
-    public UserRepository(){
+    public UserRepository() {
         apiService = ApiClient.getRetrofit().create(ApiService.class);
     }
-    public LiveData<UserResponse> getAllUsers() {
-        MutableLiveData<UserResponse> data = new MutableLiveData<>();
-        apiService.getAllUsers().enqueue(new Callback<UserResponse>() {
+
+    public LiveData<ArrayList<User>> getAllUsers() {
+        MutableLiveData<ArrayList<User>> data = new MutableLiveData<>();
+        apiService.getAllUsers().enqueue(new Callback<ArrayList<User>>() {
             @Override
-            public void onResponse(@NotNull Call<UserResponse> call, @NotNull Response<UserResponse> response) {
+            public void onResponse(@NotNull Call<ArrayList<User>> call, @NotNull Response<ArrayList<User>> response) {
                 Log.e(ConstantValue.TAG, "Good response !");
                 data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(@NotNull Call<UserResponse> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<ArrayList<User>> call, @NotNull Throwable t) {
                 Log.e(ConstantValue.TAG, "Bad response !");
                 Log.e(ConstantValue.TAG, "Error : " + t.getMessage());
                 data.setValue(null);
@@ -45,17 +47,17 @@ public class UserRepository {
         return data;
     }
 
-    public LiveData<UserDetailsResponse> getUserInfo(String id) {
+    public LiveData<UserDetailsResponse> getUserInfo(String token, String id) {
         MutableLiveData<UserDetailsResponse> data = new MutableLiveData<>();
-        apiService.getUserInfo(id).enqueue(new Callback<UserDetailsResponse>() {
+        apiService.getUserInfo("Bearer " +token, id).enqueue(new Callback<UserDetailsResponse>() {
             @Override
-            public void onResponse(Call<UserDetailsResponse> call, Response<UserDetailsResponse> response) {
+            public void onResponse(@NotNull Call<UserDetailsResponse> call, @NotNull Response<UserDetailsResponse> response) {
                 Log.e(ConstantValue.TAG, "Good response !");
                 data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<UserDetailsResponse> call, Throwable t) {
+            public void onFailure(@NotNull Call<UserDetailsResponse> call, @NotNull Throwable t) {
                 Log.e(ConstantValue.TAG, "Bad response !");
                 Log.e(ConstantValue.TAG, "Error : " + t.getMessage());
                 data.setValue(null);
@@ -96,7 +98,7 @@ public class UserRepository {
             public void onFailure(@NotNull Call<UserSignUpResponse> call, @NotNull Throwable t) {
                 Log.e(ConstantValue.TAG, "Bad response !");
                 Log.e(ConstantValue.TAG, "Error : " + t.getMessage());
-                data.setValue(null);
+                data.setValue(new UserSignUpResponse());
             }
         });
         return data;

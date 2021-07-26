@@ -15,36 +15,48 @@
     </style>
 
     //Main background
+
     <style name="MainBackground" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:background">@drawable/background_dark</item>
     </style>
+    <style name="MainBackgroundSemiTransparent" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:background">@drawable/background_semi_transparent_dark</item>
+    </style>
 
     //Tab background
+
     <style name="TabBackground" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:background">@drawable/tab_background_dark</item>
     </style>
 
     //Card background
-    <style name="ItemCardBackground" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@drawable/item_background_dark</item>
+
+    <style name="ItemCardBackground" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:background">@drawable/ripple_rounded_dark</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
 
     //Edit text
+
     <style name="CustomEditText">
         <item name="android:background">@drawable/rounded_edit_text_dark</item>
     </style>
 
     //Text
+
     <style name="TextStyle">
         <item name="android:color">@color/light_500</item>
     </style>
 
     //Icon
+
     <style name="IconStyle">
         <item name="android:tint">@color/light_500</item>
     </style>
 
     //Icon clickable
+
     <style name="IconCircleClickableStyle">
         <item name="android:tint">@color/light_500</item>
         <item name="android:background">@drawable/ripple_circle_dark</item>

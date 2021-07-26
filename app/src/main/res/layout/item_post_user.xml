@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="user"
+            type="com.example.openservices.models.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_button_card"
+        style="@style/ItemCardBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/application_margin"
+        android:layout_marginEnd="@dimen/application_margin"
+        android:layout_marginTop="5dp"
+        android:padding="10dp">
+        <androidx.cardview.widget.CardView
+                android:id="@+id/card_thumbnail"
+                android:layout_width="@dimen/thumbnail_height"
+                android:layout_height="@dimen/thumbnail_height"
+                app:cardBackgroundColor="@color/transparent"
+                app:cardCornerRadius="@dimen/corner_radius"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/image_button_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@color/light_400"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/ripple_circle"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:riv_corner_radius="@dimen/thumbnail_height" />
+            </androidx.cardview.widget.CardView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{user.cv.main_activity != null ? user.cv.main_activity : user.cv.title, default=`None activity`}"
+            android:textSize="@dimen/text_sub_title"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/linear_button_share"
+            app:layout_constraintStart_toEndOf="@+id/card_thumbnail"
+            app:layout_constraintTop_toTopOf="@+id/card_thumbnail" />
+        <LinearLayout
+            android:id="@+id/linear_button_share"
+            android:layout_width="@dimen/image_button_size"
+            android:layout_height="@dimen/image_button_size"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/card_thumbnail">
+
+            <ImageView
+                android:id="@+id/image_button_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/ripple_circle"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_baseline_share_24" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_person_business"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/text_status"
+            app:layout_constraintStart_toStartOf="@+id/card_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/card_thumbnail">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{user.category.type_user.equals(`physic`) ? @drawable/ic_baseline_person_24 : @drawable/ic_baseline_business_24}" />
+
+            <TextView
+                android:id="@+id/text_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@{user.person.first_name != null ? user.person.first_name+ ` ` +user.person.second_name : user.entreprise.name}" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_person_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/text_status"
+            app:layout_constraintStart_toStartOf="@+id/card_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/linear_person_business">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_location_on_24" />
+
+            <TextView
+                android:id="@+id/text_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLength="20"
+                android:text="@{user.address.city+ ` ` + user.address.country}" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/image_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ellipsize="end"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:src="@drawable/ic_baseline_beenhere_24"
+            app:layout_constraintBottom_toBottomOf="@+id/linear_person_location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linear_person_location"/>
+        <LinearLayout
+            android:id="@+id/linear_text_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_person_location">
+
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{user.cv.bio}" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

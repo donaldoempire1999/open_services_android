@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import com.example.openservices.R;
 import com.example.openservices.databinding.FragmentSignUpAccountInfoBinding;
+import com.example.openservices.models.User;
+import com.example.openservices.utilities.CustomStringChecker;
+import com.example.openservices.utilities.SharedPreferencesManager;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -23,6 +26,7 @@ public class SignUpAccountInfoFragment extends Fragment {
     private Context context;
 
     private boolean isCorrectInputs;
+    private User userToSignUp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class SignUpAccountInfoFragment extends Fragment {
         activity = getActivity();
         context = getContext();
 
+        getData();
         setViews();
         checkInteractions();
 
@@ -61,20 +66,44 @@ public class SignUpAccountInfoFragment extends Fragment {
     }
 
     private void checkInputs() {
-        isCorrectInputs = dataBiding.editTextPhone.getText() != null;
-        if (isCorrectInputs){
+        String tempPhone = "";
+        String tempPassword1 = "";
+        String tempPassword2 = "";
+        //Get edit text info
+        if (dataBiding.editTextPhone.getText() != null)
+            tempPhone = dataBiding.editTextPhone.getText().toString();
+        if (dataBiding.editTextPassword.getText() != null)
+            tempPassword1 = dataBiding.editTextPassword.getText().toString();
+        if (dataBiding.editTextPassword2.getText() != null)
+            tempPassword2 = dataBiding.editTextPassword2.getText().toString();
+        //Check if inputs are correct
+        if (CustomStringChecker.checkStringInput(tempPhone, 2) && CustomStringChecker.checkStringInput(tempPassword1, 6)) {
+            isCorrectInputs = tempPassword1.equals(tempPassword2);
+        } else {
+            isCorrectInputs = false;
+        }
+        if (isCorrectInputs) {
+            userToSignUp.setPhone_number(tempPhone);
+            userToSignUp.setPassword(tempPhone);
+            SharedPreferencesManager.saveSignUpUserInfo(activity, userToSignUp);
             goToNextPage();
-        }else {
-            Toast.makeText(activity, "Please enter all required fields !", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(activity, "Please enter valid required fields !", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void goToNextPage() {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_trans, R.anim.exit, R.anim.pop_enter_trans, R.anim.exit);
         fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpAddressCityInfoFragment()).commit();
     }
 
     private void setViews() {
+        dataBiding.setUserToSignUp(userToSignUp);
+    }
+
+    private void getData() {
+        userToSignUp = SharedPreferencesManager.getSignUpUserInfo(activity);
     }
 }

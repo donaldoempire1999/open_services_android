@@ -8,6 +8,10 @@ public class Cv {
 
     @SerializedName("bio")
     private String bio;
+    @SerializedName("main_activity")
+    private String main_activity;
+    @SerializedName("title")
+    private String title;
     @SerializedName("jobs")
     private ArrayList<Job> jobs;
     @SerializedName("extra")
@@ -38,5 +42,21 @@ public class Cv {
 
     public void setExtra(ArrayList<Extra> extra) {
         this.extra = extra;
+    }
+
+    public String getMain_activity() {
+        return main_activity;
+    }
+
+    public void setMain_activity(String main_activity) {
+        this.main_activity = main_activity;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

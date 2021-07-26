@@ -8,13 +8,11 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-import androidx.core.app.ActivityCompat;
-
 import static android.content.Context.MODE_PRIVATE;
 
 public class SharedPreferencesManager {
 
-    public static void saveUserInfo(Activity activity, String id, String token, String category){
+    public static void saveUserInfo(Activity activity, String id, String token, String category) {
         SharedPreferences.Editor editor = activity.getSharedPreferences(ConstantValue.PREFERENCES_USER_INFO, MODE_PRIVATE).edit();
         editor.putString("userId", id);
         editor.putString("token", token);
@@ -22,7 +20,7 @@ public class SharedPreferencesManager {
         editor.apply();
     }
 
-    public static ArrayList<String> getUserInfo(Activity activity){
+    public static ArrayList<String> getUserInfo(Activity activity) {
         ArrayList<String> data = new ArrayList<String>();
         SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_USER_INFO, MODE_PRIVATE);
         data.add(prefs.getString("userId", null));
@@ -32,7 +30,7 @@ public class SharedPreferencesManager {
     }
 
     public static void saveSignUpUserInfo(Activity activity, User user) {
-        SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_USER_INFO, MODE_PRIVATE).edit();
+        SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_SIGN_UP_USER_INFO, MODE_PRIVATE).edit();
         Gson gson = new Gson();
         String jSon = gson.toJson(user);
         prefs.putString("userSignUp", jSon);
@@ -41,10 +39,23 @@ public class SharedPreferencesManager {
 
     public static User getSignUpUserInfo(Activity activity) {
         User data = new User();
-        SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_USER_INFO, MODE_PRIVATE);
+        SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_SIGN_UP_USER_INFO, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefs.getString("userSignUp", "");
         data = gson.fromJson(json, User.class);
+        return data;
+    }
+
+    public static void saveSearchType(Activity activity, String type) {
+        SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_SEARCH_TYPES, MODE_PRIVATE).edit();
+        prefs.putString("searchType", type);
+        prefs.apply();
+    }
+
+    public static String getSearchType(Activity activity) {
+        String data = null;
+        SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_SEARCH_TYPES, MODE_PRIVATE);
+        data = prefs.getString("searchType", null);
         return data;
     }
 }

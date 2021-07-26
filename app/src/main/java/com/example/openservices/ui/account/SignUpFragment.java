@@ -8,6 +8,16 @@ import android.view.ViewGroup;
 
 import com.example.openservices.R;
 import com.example.openservices.databinding.FragmentSignUpBinding;
+import com.example.openservices.models.Address;
+import com.example.openservices.models.Category;
+import com.example.openservices.models.Cv;
+import com.example.openservices.models.Entreprise;
+import com.example.openservices.models.Person;
+import com.example.openservices.models.User;
+import com.example.openservices.utilities.ConstantValue;
+import com.example.openservices.utilities.SharedPreferencesManager;
+
+import java.util.ArrayList;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -62,21 +72,47 @@ public class SignUpFragment extends Fragment {
         });
     }
 
-    private void goToSignIn(){
+    private void goToSignIn() {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new SignInFragment()).commit();
     }
 
-    private void goToSignUpPerson(){
+    private void goToSignUpPerson() {
+        User newUser = new User();
+        newUser.setAddress(new Address());
+        newUser.setCv(new Cv());
+        newUser.setContracts(new ArrayList<>());
+        newUser.setEntreprise(new Entreprise());
+        newUser.setPerson(new Person());
+
+        Category newCategory = new Category();
+        newCategory.setRole(ConstantValue.PROFILE_REQUESTER);
+        newUser.setCategory(newCategory);
+
+        SharedPreferencesManager.saveSignUpUserInfo(activity, newUser);
+
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         fragmentTransaction.add(R.id.main_frame_layout, new SignUpPersonFragment()).addToBackStack(null).commit();
     }
 
-    private void goToSignUpBusiness(){
+    private void goToSignUpBusiness() {
+        User newUser = new User();
+        newUser.setAddress(new Address());
+        newUser.setCv(new Cv());
+        newUser.setContracts(new ArrayList<>());
+        newUser.setEntreprise(new Entreprise());
+        newUser.setPerson(new Person());
+
+        Category newCategory = new Category();
+        newCategory.setRole(ConstantValue.PROFILE_BUSINESS);
+        newUser.setCategory(newCategory);
+
+        SharedPreferencesManager.saveSignUpUserInfo(activity, newUser);
+
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);

@@ -15,13 +15,15 @@ public class PublicationViewModel extends ViewModel {
         repository = new PublicationRepository();
     }
 
-    public LiveData<PublicationResponse> getAllPublications(){
+    public LiveData<PublicationResponse> getAllPublications() {
         return repository.getAllPublications();
     }
-    public LiveData<PublicationResponse> getMyPublications(){
+
+    public LiveData<PublicationResponse> getMyPublications() {
         return repository.getMyPublications();
     }
-    public LiveData<PublicationDetailsResponse> getPublicationInfo(String id){
-        return repository.getPublicationInfo(id);
+
+    public LiveData<PublicationDetailsResponse> getPublicationInfo(String token, String id) {
+        return repository.getPublicationInfo(token, id);
     }
 }

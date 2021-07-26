@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class UserResponse {
 
     @SerializedName("users")
-    private ArrayList<User> users;
+    private ArrayList<User> users = null;;
 
     public ArrayList<User> getUsers() {
         return users;

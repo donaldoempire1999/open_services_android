@@ -46,7 +46,7 @@ public class SignUpPersonFragment extends Fragment {
     private void setViews() {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.enter_trans, R.anim.exit_trans, R.anim.pop_enter_trans, R.anim.pop_exit_trans);
+        fragmentTransaction.setCustomAnimations(R.anim.enter_trans, R.anim.exit, R.anim.pop_enter_trans, R.anim.exit);
         fragmentTransaction.replace(R.id.frame_layout_onboarding, new SignUpAccountInfoFragment()).commit();
     }
 

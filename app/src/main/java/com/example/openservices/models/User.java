@@ -10,8 +10,8 @@ public class User {
     private Category category;
     @SerializedName("address")
     private Address address;
-//    @SerializedName("person")
-//    private Person person;
+    @SerializedName("person")
+    private Person person;
     @SerializedName("entreprise")
     private Entreprise entreprise;
     @SerializedName("cv")
@@ -24,16 +24,16 @@ public class User {
     private ArrayList<Contract> contracts;
     @SerializedName("_id")
     private String _id;
-    @SerializedName("publications")
-    private ArrayList<String> publications;
+    @SerializedName("image_url")
+    private String image_url;
     @SerializedName("email")
     private String email;
     @SerializedName("phone_number")
     private String phone_number;
+    @SerializedName("mdp")
+    private String password;
     @SerializedName("__v")
     private int version;
-//    @SerializedName("image_url")
-//    private String image_url;
 
     public User() {
     }
@@ -52,6 +52,14 @@ public class User {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Entreprise getEntreprise() {
@@ -102,12 +110,12 @@ public class User {
         this._id = _id;
     }
 
-    public ArrayList<String> getPublications() {
-        return publications;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setPublications(ArrayList<String> publications) {
-        this.publications = publications;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public String getEmail() {
@@ -124,6 +132,14 @@ public class User {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getVersion() {
