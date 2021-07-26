@@ -2,6 +2,9 @@ package com.example.openservices.repositories;
 
 import android.util.Log;
 
+import com.example.openservices.models.Publication;
+import com.example.openservices.models.PublicationDetail;
+import com.example.openservices.models.User;
 import com.example.openservices.network.ApiClient;
 import com.example.openservices.network.ApiService;
 import com.example.openservices.responses.PublicationDetailsResponse;
@@ -9,6 +12,8 @@ import com.example.openservices.responses.PublicationResponse;
 import com.example.openservices.utilities.ConstantValue;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -85,4 +90,25 @@ public class PublicationRepository {
         });
         return data;
     }
+
+
+    public LiveData<ArrayList<Publication>> searchPublications(String type, String collection, String query) {
+        MutableLiveData<ArrayList<Publication>> data = new MutableLiveData<>();
+        apiService.searchPublications(type, collection, query).enqueue(new Callback<ArrayList<Publication>>() {
+            @Override
+            public void onResponse(@NotNull Call<ArrayList<Publication>> call, @NotNull Response<ArrayList<Publication>> response) {
+                Log.e(ConstantValue.TAG, "Good response !");
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<ArrayList<Publication>> call, @NotNull Throwable t) {
+                Log.e(ConstantValue.TAG, "Bad response !");
+                Log.e(ConstantValue.TAG, "Error : " + t.getMessage());
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+
 }

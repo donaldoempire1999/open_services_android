@@ -104,4 +104,23 @@ public class UserRepository {
         });
         return data;
     }
+
+    public LiveData<ArrayList<User>> searchUsers(String type, String collection, String query) {
+        MutableLiveData<ArrayList<User>> data = new MutableLiveData<>();
+        apiService.searchUsers(type, collection, query).enqueue(new Callback<ArrayList<User>>() {
+            @Override
+            public void onResponse(@NotNull Call<ArrayList<User>> call, @NotNull Response<ArrayList<User>> response) {
+                Log.e(ConstantValue.TAG, "Good response !");
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<ArrayList<User>> call, @NotNull Throwable t) {
+                Log.e(ConstantValue.TAG, "Bad response !");
+                Log.e(ConstantValue.TAG, "Error : " + t.getMessage());
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
 }

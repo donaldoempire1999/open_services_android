@@ -69,4 +69,13 @@
     <string name="apply_candidate">Apply candidate</string>
     <string name="look_contract">Look contract</string>
     <string name="please_sign_in_to_get_more_info">Please sign in to get more info</string>
+    <string name="end_date">End date</string>
+    <string name="search_publication">Search publications</string>
+    <string name="search_provider">Search providers</string>
+    <string name="search_requester">Search requesters</string>
+    <string name="publications">Publications</string>
+    <string name="requesters">Requesters</string>
+    <string name="providers">Providers</string>
+    <string name="apply">Apply</string>
+    <string name="autocomplete_search">Autocomplete search</string>
 </resources>

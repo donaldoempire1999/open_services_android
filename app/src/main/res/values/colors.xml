@@ -3,8 +3,8 @@
     <color name="main_color_200">#0acdb1</color>
     <color name="main_color_500">#12abb5</color>
     <color name="main_color_700">#0B91A3</color>
-    <color name="second_color_200">#DAAB03</color>
-    <color name="second_color_700">#877101</color>
+    <color name="second_color_200">#0acdb1</color>
+    <color name="second_color_500">#12abb5</color>
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>

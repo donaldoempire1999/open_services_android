@@ -109,7 +109,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toStartOf="@+id/image_status"
+            app:layout_constraintEnd_toStartOf="@+id/text_status"
             app:layout_constraintStart_toStartOf="@+id/card_thumbnail"
             app:layout_constraintTop_toBottomOf="@+id/linear_person_business">
 
@@ -132,8 +132,8 @@
                 android:maxLength="20"
                 android:text="@{user.address.city+ ` ` + user.address.country}" />
         </LinearLayout>
-        <ImageView
-            android:id="@+id/image_status"
+        <TextView
+            android:id="@+id/text_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -143,7 +143,8 @@
             android:ellipsize="end"
             android:maxLength="10"
             android:maxLines="1"
-            android:src="@drawable/ic_baseline_beenhere_24"
+            android:text="@{user.status}"
+            android:textColor="@{user.status.equals(`offline`) ? @color/red_500 : @color/main_color_200}"
             app:layout_constraintBottom_toBottomOf="@+id/linear_person_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/linear_person_location"/>

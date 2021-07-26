@@ -4,20 +4,20 @@ import com.google.gson.annotations.SerializedName;
 
 public class TaskDescription {
 
-    @SerializedName("title")
-    private String title;
-//    @SerializedName("difficulty")
-//    private String difficulty;
+    @SerializedName("difficulty")
+    private String difficulty;
+    @SerializedName("period")
+    private Period period;
     @SerializedName("priority")
     private int priority;
-    @SerializedName("description")
-    private String description;
     @SerializedName("points")
     private int points;
     @SerializedName("base_amount")
     private int base_amount;
-    @SerializedName("period")
-    private Period period;
+    @SerializedName("description")
+    private String description;
+    @SerializedName("title")
+    private String title;
 
     public TaskDescription() {
     }
@@ -30,13 +30,13 @@ public class TaskDescription {
         this.title = title;
     }
 
-//    public String getDifficulty() {
-//        return difficulty;
-//    }
-//
-//    public void setDifficulty(String difficulty) {
-//        this.difficulty = difficulty;
-//    }
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
 
     public int getPriority() {
         return priority;

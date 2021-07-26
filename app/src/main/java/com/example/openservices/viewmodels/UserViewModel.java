@@ -35,4 +35,8 @@ public class UserViewModel extends ViewModel {
     public LiveData<UserSignUpResponse> signUp(User user) {
         return repository.signUp(user);
     }
+
+    public LiveData<ArrayList<User>> searchUsers(String type, String collection, String query) {
+        return repository.searchUsers(type, collection, query);
+    }
 }

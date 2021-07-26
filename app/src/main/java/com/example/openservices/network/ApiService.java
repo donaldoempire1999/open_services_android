@@ -1,5 +1,6 @@
 package com.example.openservices.network;
 
+import com.example.openservices.models.Publication;
 import com.example.openservices.models.User;
 import com.example.openservices.responses.PublicationDetailsResponse;
 import com.example.openservices.responses.PublicationResponse;
@@ -12,6 +13,7 @@ import com.example.openservices.responses.UserUpdateResponse;
 import java.util.ArrayList;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -64,4 +66,14 @@ public interface ApiService {
     Call<PublicationDetailsResponse> getPublicationInfo(@Header("Authorization") String token, @Path("id_pub") String id_pub);
 
     //Search post
+    @FormUrlEncoded
+    @Headers("Content-Type: application/json")
+    @POST("search/{type_search}")
+    Call<ArrayList<Publication>> searchPublications(@Path("type_search") String type_search, @Field("collection") String collection, @Field("query_string") String query_string);
+
+    //Search user
+    @FormUrlEncoded
+    @Headers("Content-Type: application/json")
+    @POST("search/{type_search}")
+    Call<ArrayList<User>> searchUsers(@Path("type_search") String type_search, @Field("collection") String collection, @Field("query_string") String query_string);
 }

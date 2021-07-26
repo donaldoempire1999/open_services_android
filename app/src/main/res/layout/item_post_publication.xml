@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="10"
-                android:text="@{` ` +publication.taskDescription.base_amount}"
+                android:text="@{`: ` +publication.taskDescription.base_amount}"
                 android:textStyle="bold" />
 
             <TextView
@@ -211,7 +211,7 @@
             android:maxLength="10"
             android:maxLines="1"
             android:text="@{publication.state}"
-            android:textColor="@{publication != null ? publication.state != `open` ? @color/green_300 : @color/red_500 : @color/red_500, default=`@color/red_200`}"
+            android:textColor="@{publication.state.equals(`open`) ? @color/main_color_200 : @color/red_500}"
             app:layout_constraintBottom_toBottomOf="@+id/linear_business_location"
             app:layout_constraintEnd_toEndOf="@+id/linear_button_fav"
             app:layout_constraintTop_toTopOf="@+id/linear_business_location" />
@@ -224,8 +224,7 @@
             android:ellipsize="end"
             android:maxLength="20"
             android:maxLines="1"
-            android:visibility="gone"
-            android:text="@string/posted"
+            android:text="@string/end_date"
             android:textSize="@dimen/text_detail"
             app:layout_constraintBottom_toBottomOf="@+id/linear_button_share"
             app:layout_constraintStart_toStartOf="parent"
@@ -233,16 +232,16 @@
 
         <TextView
             android:id="@+id/text_date"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:ellipsize="end"
-            android:maxLength="20"
             android:maxLines="1"
-            android:visibility="gone"
             android:textSize="@dimen/text_detail"
+            android:text="@{`: ` +publication.taskDescription.period.end_date}"
             app:layout_constraintBottom_toBottomOf="@+id/linear_button_share"
             app:layout_constraintStart_toEndOf="@+id/text_date_title"
+            app:layout_constraintEnd_toStartOf="@+id/linear_button_share"
             app:layout_constraintTop_toTopOf="@+id/linear_button_share" />
 
         <androidx.cardview.widget.CardView

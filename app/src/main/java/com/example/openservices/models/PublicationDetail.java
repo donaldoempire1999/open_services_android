@@ -11,7 +11,7 @@ public class PublicationDetail {
     @SerializedName("likes")
     private int likes;
     @SerializedName("followers")
-    private ArrayList<User> followers;
+    private ArrayList<String> followers;
     @SerializedName("contract_for_post")
     private Contract contract_for_post;
     @SerializedName("state")
@@ -48,11 +48,11 @@ public class PublicationDetail {
         this.likes = likes;
     }
 
-    public ArrayList<User> getFollowers() {
+    public ArrayList<String> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(ArrayList<User> followers) {
+    public void setFollowers(ArrayList<String> followers) {
         this.followers = followers;
     }
 
