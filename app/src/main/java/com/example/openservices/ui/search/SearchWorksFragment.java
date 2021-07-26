@@ -166,6 +166,11 @@ public class SearchWorksFragment extends Fragment {
             });
         }
         if (checkBox != null){
+            if (searchMatching.equals(ConstantValue.SEARCH_COLLECTION_KEY_WORD_AUTOCOMPLETE)){
+                checkBox.setChecked(true);
+            }else{
+                checkBox.setChecked(false);
+            }
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
