@@ -97,12 +97,11 @@ public class SignInFragment extends Fragment {
     }
 
     private void goToMyProfile(UserSignInResponse userSignInResponse) {
-        userViewModel.getUserInfo(SharedPreferencesManager.getUserInfo(activity).get(1), userSignInResponse.getUserId()).observe(activity, new Observer<UserDetailsResponse>() {
+        userViewModel.getUserInfo(userSignInResponse.getUserId()).observe(activity, new Observer<UserDetailsResponse>() {
             @Override
             public void onChanged(UserDetailsResponse userDetailsResponse) {
                 dataBiding.setIsLoadingSignIn(false);
                 if (userDetailsResponse != null) {
-                    Toast.makeText(activity, "Logged !", Toast.LENGTH_SHORT).show();
                     SharedPreferencesManager.saveUserInfo(activity, userSignInResponse.getUserId(), userSignInResponse.getToken(), userDetailsResponse.getUser().getCategory().getRole());
                     if (userDetailsResponse.getUser().getCategory().getRole().equals(ConstantValue.PROFILE_ADMIN)) {
                         goToMyAdminProfile();
@@ -112,7 +111,7 @@ public class SignInFragment extends Fragment {
                         goToMyRequesterProfile();
                     }
                 } else {
-                    Toast.makeText(activity, "None account found !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "None info found !", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -136,7 +135,7 @@ public class SignInFragment extends Fragment {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new BusinessAccountFragment()).commit();
+        fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new ProviderAccountFragment()).commit();
     }
 
     private void goToSignUp() {

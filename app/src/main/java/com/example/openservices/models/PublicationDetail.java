@@ -17,9 +17,9 @@ public class PublicationDetail {
     @SerializedName("state")
     private String state;
     @SerializedName("publication_date")
-    private Contract publication_date;
+    private String publication_date;
     @SerializedName("_id")
-    private Contract _id;
+    private String _id;
     @SerializedName("author")
     private String author;
     @SerializedName("medias")
@@ -72,19 +72,19 @@ public class PublicationDetail {
         this.state = state;
     }
 
-    public Contract getPublication_date() {
+    public String getPublication_date() {
         return publication_date;
     }
 
-    public void setPublication_date(Contract publication_date) {
+    public void setPublication_date(String publication_date) {
         this.publication_date = publication_date;
     }
 
-    public Contract get_id() {
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(Contract _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 

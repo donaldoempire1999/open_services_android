@@ -3,6 +3,7 @@ package com.example.openservices.utilities;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
+import com.example.openservices.models.Publication;
 import com.example.openservices.models.User;
 import com.google.gson.Gson;
 
@@ -17,15 +18,20 @@ public class SharedPreferencesManager {
         editor.putString("userId", id);
         editor.putString("token", token);
         editor.putString("category", category);
+        if (token != null) {
+            ConstantValue.setTOKEN(token);
+        }else{
+            ConstantValue.setTOKEN("");
+        }
         editor.apply();
     }
 
     public static ArrayList<String> getUserInfo(Activity activity) {
         ArrayList<String> data = new ArrayList<String>();
         SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_USER_INFO, MODE_PRIVATE);
-        data.add(prefs.getString("userId", null));
-        data.add(prefs.getString("token", null));
-        data.add(prefs.getString("category", null));
+        data.add(prefs.getString("userId", ""));
+        data.add(prefs.getString("token", ""));
+        data.add(prefs.getString("category", ""));
         return data;
     }
 
@@ -43,6 +49,23 @@ public class SharedPreferencesManager {
         Gson gson = new Gson();
         String json = prefs.getString("userSignUp", "");
         data = gson.fromJson(json, User.class);
+        return data;
+    }
+
+    public static void savePostAddInfo(Activity activity, Publication publication) {
+        SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_SIGN_UP_USER_INFO, MODE_PRIVATE).edit();
+        Gson gson = new Gson();
+        String jSon = gson.toJson(publication);
+        prefs.putString("postAddInfo", jSon);
+        prefs.apply();
+    }
+
+    public static Publication getPostAddInfo(Activity activity) {
+        Publication data = new Publication();
+        SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.PREFERENCES_SIGN_UP_USER_INFO, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString("postAddInfo", "");
+        data = gson.fromJson(json, Publication.class);
         return data;
     }
 
@@ -75,6 +98,7 @@ public class SharedPreferencesManager {
     public static void saveSearchCollection(Activity activity, String searchCollection) {
         SharedPreferences.Editor prefs = activity.getSharedPreferences(ConstantValue.ARG_PARAM_SEARCH_COLLECTION, MODE_PRIVATE).edit();
         prefs.putString("searchCollection", searchCollection);
+        ConstantValue.setSearchCollection(searchCollection);
         prefs.apply();
     }
 
@@ -82,6 +106,7 @@ public class SharedPreferencesManager {
         String data = null;
         SharedPreferences prefs = activity.getSharedPreferences(ConstantValue.ARG_PARAM_SEARCH_COLLECTION, MODE_PRIVATE);
         data = prefs.getString("searchCollection", ConstantValue.SEARCH_COLLECTION_PUBLICATIONS);
+        ConstantValue.setSearchCollection(data);
         return data;
     }
 

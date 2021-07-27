@@ -67,7 +67,7 @@
                 android:ellipsize="end"
                 android:gravity="start"
                 android:maxLines="1"
-                android:text="@string/job_details"
+                android:text="@string/post_details"
                 android:textSize="@dimen/text_title"
                 android:textStyle="bold" />
         </LinearLayout>

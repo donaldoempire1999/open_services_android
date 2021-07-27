@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.openservices.R;
 import com.example.openservices.ui.account.AdminAccountFragment;
-import com.example.openservices.ui.account.BusinessAccountFragment;
+import com.example.openservices.ui.account.ProviderAccountFragment;
 import com.example.openservices.ui.account.RequesterAccountFragment;
 import com.example.openservices.ui.account.SignInFragment;
 import com.example.openservices.ui.contracts.ContractFragment;
@@ -102,7 +102,7 @@ public class MainFragment extends Fragment {
                                 if (userCategory.equals(ConstantValue.PROFILE_ADMIN)) {
                                     fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new AdminAccountFragment()).commit();
                                 } else if (userCategory.equals(ConstantValue.PROFILE_BUSINESS)) {
-                                    fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new BusinessAccountFragment()).commit();
+                                    fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new ProviderAccountFragment()).commit();
                                 } else if (userCategory.equals(ConstantValue.PROFILE_REQUESTER)) {
                                     fragmentTransaction.replace(R.id.bottom_nav_frame_layout, new RequesterAccountFragment()).commit();
                                 } else {

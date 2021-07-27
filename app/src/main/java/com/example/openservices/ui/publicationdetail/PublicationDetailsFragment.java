@@ -9,21 +9,17 @@ import android.widget.Toast;
 
 import com.example.openservices.R;
 import com.example.openservices.databinding.FragmentPublicationDetailsBinding;
-import com.example.openservices.models.Publication;
 import com.example.openservices.models.PublicationDetail;
 import com.example.openservices.models.User;
 import com.example.openservices.responses.PublicationDetailsResponse;
 import com.example.openservices.responses.UserDetailsResponse;
 import com.example.openservices.utilities.ConstantValue;
-import com.example.openservices.utilities.SharedPreferencesManager;
 import com.example.openservices.viewmodels.PublicationViewModel;
 import com.example.openservices.viewmodels.UserViewModel;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -133,7 +129,7 @@ public class PublicationDetailsFragment extends Fragment {
         dataBiding.linearPleaseConnect.setVisibility(View.GONE);
         dataBiding.nestedScrollView.setVisibility(View.GONE);
         dataBiding.linearApplyCandidate.setVisibility(View.GONE);
-        publicationViewModel.getPublicationInfo(SharedPreferencesManager.getUserInfo(activity).get(1), publicationId).observe(activity, new Observer<PublicationDetailsResponse>() {
+        publicationViewModel.getPublicationInfo(publicationId).observe(activity, new Observer<PublicationDetailsResponse>() {
             @Override
             public void onChanged(PublicationDetailsResponse publicationDetailsResponse) {
                 if (publicationDetailsResponse != null){
@@ -170,8 +166,7 @@ public class PublicationDetailsFragment extends Fragment {
     }
 
     private void getAuthorInfo(String author) {
-        Toast.makeText(activity, "Author : " +author, Toast.LENGTH_SHORT).show();
-        userViewModel.getUserInfo(SharedPreferencesManager.getUserInfo(activity).get(1), author).observe(activity, new Observer<UserDetailsResponse>() {
+        userViewModel.getUserInfo(author).observe(activity, new Observer<UserDetailsResponse>() {
             @Override
             public void onChanged(UserDetailsResponse userDetailsResponse) {
                 dataBiding.setIsLoadingView(false);

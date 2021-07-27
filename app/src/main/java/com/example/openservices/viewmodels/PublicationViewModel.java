@@ -1,10 +1,10 @@
 package com.example.openservices.viewmodels;
 
 import com.example.openservices.models.Publication;
-import com.example.openservices.models.User;
 import com.example.openservices.repositories.PublicationRepository;
 import com.example.openservices.responses.PublicationDetailsResponse;
 import com.example.openservices.responses.PublicationResponse;
+import com.example.openservices.responses.PublicationSaveResponse;
 
 import java.util.ArrayList;
 
@@ -27,11 +27,15 @@ public class PublicationViewModel extends ViewModel {
         return repository.getMyPublications();
     }
 
-    public LiveData<PublicationDetailsResponse> getPublicationInfo(String token, String id) {
-        return repository.getPublicationInfo(token, id);
+    public LiveData<PublicationDetailsResponse> getPublicationInfo(String id) {
+        return repository.getPublicationInfo(id);
     }
 
     public LiveData<ArrayList<Publication>> searchPublications(String type, String collection, String query) {
         return repository.searchPublications(type, collection, query);
+    }
+
+    public LiveData<PublicationSaveResponse> savePublication(Publication publication) {
+        return repository.savePublication(publication);
     }
 }

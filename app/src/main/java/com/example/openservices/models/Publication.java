@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class Publication {
 
+    @SerializedName("_id")
+    private String id;
     @SerializedName("likes")
     private int likes;
     @SerializedName("medias")
@@ -24,6 +26,14 @@ public class Publication {
     private Contract contract_for_post;
 
     public Publication() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getLikes() {
@@ -50,11 +60,11 @@ public class Publication {
         this.comments = comments;
     }
 
-    public TaskDescription getTaskDescription() {
+    public TaskDescription getTask_description() {
         return task_description;
     }
 
-    public void setTaskDescription(TaskDescription task_description) {
+    public void setTask_description(TaskDescription task_description) {
         this.task_description = task_description;
     }
 

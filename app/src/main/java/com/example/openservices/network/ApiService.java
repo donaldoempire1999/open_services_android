@@ -1,9 +1,11 @@
 package com.example.openservices.network;
 
 import com.example.openservices.models.Publication;
+import com.example.openservices.models.SearchObjectSend;
 import com.example.openservices.models.User;
 import com.example.openservices.responses.PublicationDetailsResponse;
 import com.example.openservices.responses.PublicationResponse;
+import com.example.openservices.responses.PublicationSaveResponse;
 import com.example.openservices.responses.UserDeleteResponse;
 import com.example.openservices.responses.UserDetailsResponse;
 import com.example.openservices.responses.UserSignInResponse;
@@ -32,7 +34,7 @@ public interface ApiService {
 
     //Get user info
     @GET("users/{id}")
-    Call<UserDetailsResponse> getUserInfo(@Header("Authorization") String token, @Path("id") String id);
+    Call<UserDetailsResponse> getUserInfo(@Path("id") String id);
 
     //Login a user
     @FormUrlEncoded
@@ -52,6 +54,10 @@ public interface ApiService {
     Call<UserDeleteResponse> deleteUser(@Path("_id") String userId);
 
 
+    //Save post
+    @POST("publications")
+    Call<PublicationSaveResponse> savePublication(@Body Publication publication);
+
     //Get all posts
     @GET("publications/all")
     Call<PublicationResponse> getAllPublications();
@@ -61,19 +67,16 @@ public interface ApiService {
     Call<PublicationResponse> getMyPublications();
 
     //Get post info
-    @Headers("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjBmNTk5NWI2ZGZmNDUyYWMwMzdlNmZmIiwiaWF0IjoxNjI3MjQwODUzLCJleHAiOjE2MjczMjcyNTN9.-HfLDn_VIdgrPkWDfqeEvJyuYO7wRQ9Ijj3vHIv_wmw")
-    @GET("publications/{id_pub}")
-    Call<PublicationDetailsResponse> getPublicationInfo(@Header("Authorization") String token, @Path("id_pub") String id_pub);
+    @GET("publications/get/{id_pub}")
+    Call<PublicationDetailsResponse> getPublicationInfo(@Path("id_pub") String id_pub);
 
     //Search post
-    @FormUrlEncoded
     @Headers("Content-Type: application/json")
     @POST("search/{type_search}")
-    Call<ArrayList<Publication>> searchPublications(@Path("type_search") String type_search, @Field("collection") String collection, @Field("query_string") String query_string);
+    Call<ArrayList<Publication>> searchPublications(@Path("type_search") String type_search, @Body SearchObjectSend searchObjectSend);
 
     //Search user
-    @FormUrlEncoded
     @Headers("Content-Type: application/json")
     @POST("search/{type_search}")
-    Call<ArrayList<User>> searchUsers(@Path("type_search") String type_search, @Field("collection") String collection, @Field("query_string") String query_string);
+    Call<ArrayList<User>> searchUsers(@Path("type_search") String type_search, @Body SearchObjectSend searchObjectSend);
 }

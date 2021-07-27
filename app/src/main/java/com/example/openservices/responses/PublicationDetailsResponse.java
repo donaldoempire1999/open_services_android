@@ -1,6 +1,5 @@
 package com.example.openservices.responses;
 
-import com.example.openservices.models.Publication;
 import com.example.openservices.models.PublicationDetail;
 import com.google.gson.annotations.SerializedName;
 

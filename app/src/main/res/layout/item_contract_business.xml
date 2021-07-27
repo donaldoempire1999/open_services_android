@@ -1,168 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/ItemCardBackground"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/application_margin"
-    android:padding="10dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/linear_button_fav"
-        android:layout_width="@dimen/image_button_size"
-        android:layout_height="@dimen/image_button_size"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
+        <variable
+            name="contract"
+            type="com.example.openservices.models.Contract" />
+    </data>
 
-        <ImageView
-            android:id="@+id/image_button_fav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/ripple_circle"
-            android:src="@drawable/ic_baseline_favorite_border_24" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_person_location"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ItemCardBackground"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/text_status"
-        app:layout_constraintStart_toStartOf="@+id/card_thumbnail"
-        app:layout_constraintTop_toBottomOf="@+id/card_thumbnail">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_person_24" />
-
-        <TextView
-            android:id="@+id/text_person"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLength="10"
-            android:maxLines="1"
-            android:text="THE MASTER" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_location_on_24" />
-
-        <TextView
-            android:id="@+id/text_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLength="20"
-            android:maxLines="1"
-            android:text="Yaounde, Cameroon" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_text_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear_person_location">
-
-        <TextView
-            android:id="@+id/text_description"
+        android:layout_margin="@dimen/application_margin"
+        android:padding="10dp">
+        <LinearLayout
+            android:id="@+id/linear_person_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="4"
-            android:text="Je suis UI.UX designer avec de tres bonnes competences" />
-    </LinearLayout>
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other accordance"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My accordance"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linear_button_share"
-        android:layout_width="@dimen/image_button_size"
-        android:layout_height="@dimen/image_button_size"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear_text_description">
-
-        <ImageView
-            android:id="@+id/image_button_share"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linear_text_description"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/ripple_circle"
-            android:src="@drawable/ic_baseline_share_24" />
-    </LinearLayout>
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_person_location">
 
-    <TextView
-        android:id="@+id/text_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:ellipsize="end"
-        android:maxLength="10"
-        android:maxLines="1"
-        android:text="Dispo"
-        android:textColor="@color/green_200"
-        app:layout_constraintBottom_toBottomOf="@+id/linear_person_location"
-        app:layout_constraintEnd_toEndOf="@+id/linear_button_fav"
-        app:layout_constraintTop_toTopOf="@+id/linear_person_location" />
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="4"
+                android:text="@{contract.publication.task_description.description+``}" />
+        </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:text="Software developer"
-        android:textSize="@dimen/text_sub_title"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/linear_button_fav"
-        app:layout_constraintStart_toEndOf="@+id/card_thumbnail"
-        app:layout_constraintTop_toTopOf="@+id/card_thumbnail" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_thumbnail"
-        android:layout_width="@dimen/thumbnail_height"
-        android:layout_height="@dimen/thumbnail_height"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/corner_radius"
-        app:cardElevation="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/thumbnail"
+        <LinearLayout
+            android:id="@+id/linear_button_share"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:src="@color/light_300"
-            app:riv_corner_radius="@dimen/thumbnail_height" />
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_text_description">
+
+            <TextView
+                android:id="@+id/image_button_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@{contract.agree_state.task.equals(`not started`) ? @color/light_500 : contract.agree_state.task.equals(`on working`) ? @color/green_300 : @color/blue_500}"
+                android:text="@{contract.agree_state.task, default=`not started`}" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

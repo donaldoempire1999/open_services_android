@@ -3,7 +3,6 @@ package com.example.openservices.viewmodels;
 import com.example.openservices.models.User;
 import com.example.openservices.repositories.UserRepository;
 import com.example.openservices.responses.UserDetailsResponse;
-import com.example.openservices.responses.UserResponse;
 import com.example.openservices.responses.UserSignInResponse;
 import com.example.openservices.responses.UserSignUpResponse;
 
@@ -24,12 +23,12 @@ public class UserViewModel extends ViewModel {
         return repository.getAllUsers();
     }
 
-    public LiveData<UserDetailsResponse> getUserInfo(String token, String id) {
-        return repository.getUserInfo(token, id);
+    public LiveData<UserDetailsResponse> getUserInfo(String id) {
+        return repository.getUserInfo(id);
     }
 
     public LiveData<UserSignInResponse> signIn(String phoneNumber, String password) {
-        return repository.signIn(phoneNumber, password);
+        return repository.signInUser(phoneNumber, password);
     }
 
     public LiveData<UserSignUpResponse> signUp(User user) {

@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Filter settings"
+                android:text="@string/filter_settings"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textSize="@dimen/text_title"
@@ -66,6 +66,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="10dp"
+        android:visibility="gone"
         >
         <CheckBox
             android:id="@+id/checkbox_autocomplete_search"
@@ -94,7 +95,7 @@
             android:maxLines="1"
             android:layout_margin="10dp"
             android:text="@string/cancel"
-            app:backgroundTint="@color/red_200"
+            app:backgroundTint="@color/red_500"
             android:layout_gravity="center"
             android:gravity="center" />
 

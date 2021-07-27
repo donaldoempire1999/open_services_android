@@ -78,4 +78,12 @@
     <string name="providers">Providers</string>
     <string name="apply">Apply</string>
     <string name="autocomplete_search">Autocomplete search</string>
+    <string name="filter_settings">Filter settings</string>
+    <string name="edit">Edit</string>
+    <string name="my_account">My account</string>
+    <string name="post_details">Post details</string>
+    <string name="my_provider_account">My provider account</string>
+    <string name="my_requester_account">My requester_account</string>
+    <string name="add_post">Add post</string>
+    <string name="title">Title</string>
 </resources>

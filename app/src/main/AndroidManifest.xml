@@ -13,9 +13,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:windowSoftInputMode="adjustResize"
             android:name=".ui.splashscreen.SplashScreenActivity"
-            android:theme="@style/SplashScreen"></activity>
+            android:theme="@style/SplashScreen" />
         <activity
+            android:windowSoftInputMode="adjustResize"
             android:name=".MainActivity"
             android:theme="@style/Theme.OpenServices">
             <intent-filter>

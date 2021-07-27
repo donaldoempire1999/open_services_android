@@ -30,7 +30,7 @@
                 android:ellipsize="end"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="@string/jobs"
+                android:text="OpenServices"
                 android:textSize="@dimen/text_title"
                 android:textStyle="bold" />
 

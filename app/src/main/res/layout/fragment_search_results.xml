@@ -7,6 +7,9 @@
         <variable
             name="isLoadingMore"
             type="Boolean" />
+        <variable
+            name="isLoadingAutoComplete"
+            type="Boolean" />
         <import type="android.view.View"/>
     </data>
 
@@ -14,68 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.search.SearchResultsFragment">
-
-        <RelativeLayout
-            android:id="@+id/linear_tab_bar"
-            style="@style/TabBackground"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/image_button_back"
-                style="@style/IconCircleClickableStyle"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:clickable="true"
-                android:contentDescription="@string/filter"
-                android:focusable="true"
-                android:padding="2dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_baseline_arrow_back_24"
-                android:layout_alignParentLeft="true" />
-
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/auto_complete_search_view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:layout_centerVertical="true"
-                android:hint="Search"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_toEndOf="@+id/image_button_back"
-                android:layout_toStartOf="@+id/image_button_search"
-                android:layout_toRightOf="@+id/image_button_back"
-                android:layout_toLeftOf="@+id/image_button_search"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" />
-
-            <ImageView
-                android:id="@+id/image_button_search"
-                style="@style/IconCircleClickableStyle"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:clickable="true"
-                android:contentDescription="@string/search"
-                android:focusable="true"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:padding="2dp"
-                android:src="@drawable/ic_search"
-                android:layout_alignParentRight="true" />
-
-        </RelativeLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear_tab_bar"
+            app:layout_constraintTop_toBottomOf="@+id/relative_tab_bar"
             app:layout_constraintBottom_toBottomOf="parent"
             >
             <androidx.recyclerview.widget.RecyclerView
@@ -87,11 +34,11 @@
                 android:clipToPadding="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/progress_circular"
+                app:layout_constraintBottom_toTopOf="@+id/progress_circular_load_more"
                 android:paddingBottom="10dp"
                 />
             <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/progress_circular"
+                android:id="@+id/progress_circular_load_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:indicatorColor="@color/main_color_200"
@@ -104,5 +51,73 @@
                 android:visibility="@{isLoadingMore ? View.VISIBLE : View.INVISIBLE, default=gone}"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:id="@+id/relative_tab_bar"
+            style="@style/TabBackground"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintTop_toTopOf="parent">
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/image_button_back"
+            style="@style/IconCircleClickableStyle"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:clickable="true"
+            android:contentDescription="@string/filter"
+            android:focusable="true"
+            android:padding="2dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/relative_tab_bar"
+            app:layout_constraintBottom_toBottomOf="@+id/relative_tab_bar" />
+
+        <ImageView
+            android:id="@+id/image_button_search"
+            style="@style/IconCircleClickableStyle"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:clickable="true"
+            android:contentDescription="@string/search"
+            android:focusable="true"
+            android:padding="2dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/relative_tab_bar"
+            app:layout_constraintBottom_toBottomOf="@+id/relative_tab_bar"/>
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_circular_autocomplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorColor="@color/main_color_200"
+            android:indeterminate="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relative_tab_bar"
+            android:visibility="@{isLoadingAutoComplete ? View.VISIBLE : View.INVISIBLE, default=gone}"
+            />
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/auto_complete_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/relative_tab_bar"
+            app:layout_constraintBottom_toBottomOf="@+id/relative_tab_bar"
+            app:layout_constraintStart_toEndOf="@+id/image_button_back"
+            app:layout_constraintEnd_toStartOf="@+id/image_button_search"
+            app:layout_goneMarginStart="10dp"
+            app:layout_goneMarginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

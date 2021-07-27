@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="4"
-                android:text="@{publication.taskDescription.description}" />
+                android:text="@{publication.task_description.description}" />
         </LinearLayout>
 
         <LinearLayout
@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="10"
-                android:text="@{`: ` +publication.taskDescription.base_amount}"
+                android:text="@{`: ` +publication.task_description.base_amount}"
                 android:textStyle="bold" />
 
             <TextView
@@ -192,7 +192,7 @@
             android:layout_marginEnd="5dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="@{publication.taskDescription.title}"
+            android:text="@{publication.task_description.title}"
             android:textSize="@dimen/text_sub_title"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/linear_button_fav"
@@ -238,7 +238,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textSize="@dimen/text_detail"
-            android:text="@{`: ` +publication.taskDescription.period.end_date}"
+            android:text="@{`: ` +publication.task_description.period.end_date}"
             app:layout_constraintBottom_toBottomOf="@+id/linear_button_share"
             app:layout_constraintStart_toEndOf="@+id/text_date_title"
             app:layout_constraintEnd_toStartOf="@+id/linear_button_share"

@@ -367,14 +367,11 @@ public class SearchWorksFragment extends Fragment {
 
                 @Override
                 public void onUserClick(int position) {
-                    showUserDetailsDialog(position);
+                    goToUserDetails(position);
                 }
             });
             dataBiding.recyclerSearchResult.setAdapter(publicationAdapter);
         }
-    }
-
-    private void showUserDetailsDialog(int position) {
     }
 
     private void shareUser(int position) {
@@ -394,14 +391,18 @@ public class SearchWorksFragment extends Fragment {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        fragmentTransaction.add(R.id.main_frame_layout, PublicationDetailsFragment.newInstance(mPublications.get(position).getAuthor())).addToBackStack(null).commit();
+        fragmentTransaction.add(R.id.main_frame_layout, PublicationDetailsFragment.newInstance(mPublications.get(position).getId())).addToBackStack(null).commit();
     }
 
     private void goToUserDetails(int position) {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        fragmentTransaction.add(R.id.main_frame_layout, PersonDetailFragment.newInstance(mUsers.get(position).get_id())).addToBackStack(null).commit();
+        if (searchType.equals(ConstantValue.SEARCH_TYPE_USERS)){
+            fragmentTransaction.add(R.id.main_frame_layout, PersonDetailFragment.newInstance(mUsers.get(position).get_id())).addToBackStack(null).commit();
+        }else{
+            fragmentTransaction.add(R.id.main_frame_layout, PublicationDetailsFragment.newInstance(mPublications.get(position).getAuthor())).addToBackStack(null).commit();
+        }
     }
 
     private void doInitializations() {

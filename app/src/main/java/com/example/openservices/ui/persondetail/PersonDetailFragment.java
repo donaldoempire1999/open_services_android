@@ -5,17 +5,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.openservices.R;
 import com.example.openservices.databinding.FragmentPersonDetailBinding;
 import com.example.openservices.models.User;
+import com.example.openservices.responses.UserDetailsResponse;
+import com.example.openservices.responses.UserDetailsResponse;
 import com.example.openservices.utilities.ConstantValue;
-import com.example.openservices.viewmodels.PublicationViewModel;
 import com.example.openservices.viewmodels.UserViewModel;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 public class PersonDetailFragment extends Fragment {
 
@@ -57,11 +61,50 @@ public class PersonDetailFragment extends Fragment {
         activity = getActivity();
         context = getContext();
 
-        getData();
-        setViews();
-        checkInteractions();
+
+        if (activity != null) {
+            doInitializations();
+            getUserInfoInfo();
+            setViews();
+            checkInteractions();
+        }
 
         return view;
+    }
+
+    private void getUserInfoInfo() {
+        dataBiding.setIsLoadingInfo(true);
+        dataBiding.linearPleaseConnect.setVisibility(View.GONE);
+        dataBiding.nestedScrollView.setVisibility(View.GONE);
+        userViewModel.getUserInfo(userId).observe(activity, new Observer<UserDetailsResponse>() {
+            @Override
+            public void onChanged(UserDetailsResponse userDetailsResponse) {
+                if (userDetailsResponse != null){
+                    if (userDetailsResponse.getUser() != null){
+                        currentUser = userDetailsResponse.getUser();
+                        dataBiding.linearPleaseConnect.setVisibility(View.GONE);
+                        dataBiding.nestedScrollView.setVisibility(View.VISIBLE);
+                        setViews();
+                    }else{
+                        dataBiding.linearPleaseConnect.setVisibility(View.VISIBLE);
+                        dataBiding.nestedScrollView.setVisibility(View.GONE);
+                        Toast.makeText(activity, "No result !", Toast.LENGTH_SHORT).show();
+                    }
+                    dataBiding.setIsLoadingInfo(false);
+                }else {
+                    dataBiding.linearPleaseConnect.setVisibility(View.VISIBLE);
+                    dataBiding.nestedScrollView.setVisibility(View.GONE);
+                    Toast.makeText(activity, "Unautorized !", Toast.LENGTH_SHORT).show();
+                    currentUser = null;
+                }
+                dataBiding.setIsLoadingInfo(false);
+                setViews();
+            }
+        });
+    }
+
+    private void doInitializations() {
+        userViewModel = new ViewModelProvider(activity).get(UserViewModel.class);
     }
 
     private void checkInteractions() {
@@ -85,9 +128,5 @@ public class PersonDetailFragment extends Fragment {
 
     private void setViews() {
         dataBiding.setUser(currentUser);
-    }
-
-    private void getData() {
-        currentUser = new User();
     }
 }

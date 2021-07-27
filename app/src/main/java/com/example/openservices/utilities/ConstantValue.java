@@ -31,9 +31,37 @@ public class ConstantValue {
     public static final String PREFERENCES_USER_INFO = "user_info";
     public static final String PREFERENCES_SIGN_UP_USER_INFO = "sign_up_user_info";
     public static final String PREFERENCES_SEARCH_TYPES = "user_search_type";
+    public static final String PREFERENCES_POST_ADD_INFO = "preferences_post_add_info";
 
     //Categories profile
     public static final String PROFILE_ADMIN = "admin";
     public static final String PROFILE_REQUESTER = "requester";
     public static final String PROFILE_BUSINESS = "provider";
+    private static String TOKEN = "";
+    private static String SEARCH_MATCHING = SEARCH_COLLECTION_USERS;
+    private static String SEARCH_COLLECTION = SEARCH_COLLECTION_PUBLICATIONS;
+
+    public static String getTOKEN() {
+        return TOKEN;
+    }
+
+    public static void setTOKEN(String TOKEN) {
+        ConstantValue.TOKEN = TOKEN;
+    }
+
+    public static String getSearchMatching() {
+        return SEARCH_MATCHING;
+    }
+
+    public static void setSearchMatching(String searchMatching) {
+        SEARCH_MATCHING = searchMatching;
+    }
+
+    public static String getSearchCollection() {
+        return SEARCH_COLLECTION;
+    }
+
+    public static void setSearchCollection(String searchCollection) {
+        SEARCH_COLLECTION = searchCollection;
+    }
 }

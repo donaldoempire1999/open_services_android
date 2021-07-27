@@ -2,11 +2,11 @@ package com.example.openservices.repositories;
 
 import android.util.Log;
 
+import com.example.openservices.models.SearchObjectSend;
 import com.example.openservices.models.User;
 import com.example.openservices.network.ApiClient;
 import com.example.openservices.network.ApiService;
 import com.example.openservices.responses.UserDetailsResponse;
-import com.example.openservices.responses.UserResponse;
 import com.example.openservices.responses.UserSignInResponse;
 import com.example.openservices.responses.UserSignUpResponse;
 import com.example.openservices.utilities.ConstantValue;
@@ -48,9 +48,9 @@ public class UserRepository {
         return data;
     }
 
-    public LiveData<UserDetailsResponse> getUserInfo(String token, String id) {
+    public LiveData<UserDetailsResponse> getUserInfo(String id) {
         MutableLiveData<UserDetailsResponse> data = new MutableLiveData<>();
-        apiService.getUserInfo("Bearer " +token, id).enqueue(new Callback<UserDetailsResponse>() {
+        apiService.getUserInfo(id).enqueue(new Callback<UserDetailsResponse>() {
             @Override
             public void onResponse(@NotNull Call<UserDetailsResponse> call, @NotNull Response<UserDetailsResponse> response) {
                 Log.e(ConstantValue.TAG, "Good response !");
@@ -67,7 +67,7 @@ public class UserRepository {
         return data;
     }
 
-    public LiveData<UserSignInResponse> signIn(String phoneNumber, String password) {
+    public LiveData<UserSignInResponse> signInUser(String phoneNumber, String password) {
         MutableLiveData<UserSignInResponse> data = new MutableLiveData<>();
         apiService.signInUser(phoneNumber, password).enqueue(new Callback<UserSignInResponse>() {
             @Override
@@ -107,7 +107,10 @@ public class UserRepository {
 
     public LiveData<ArrayList<User>> searchUsers(String type, String collection, String query) {
         MutableLiveData<ArrayList<User>> data = new MutableLiveData<>();
-        apiService.searchUsers(type, collection, query).enqueue(new Callback<ArrayList<User>>() {
+        SearchObjectSend searchObjectSend = new SearchObjectSend();
+        searchObjectSend.setCollection(collection);
+        searchObjectSend.setQuery_string(query);
+        apiService.searchUsers(type, searchObjectSend).enqueue(new Callback<ArrayList<User>>() {
             @Override
             public void onResponse(@NotNull Call<ArrayList<User>> call, @NotNull Response<ArrayList<User>> response) {
                 Log.e(ConstantValue.TAG, "Good response !");

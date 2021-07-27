@@ -8,10 +8,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.openservices.R;
-import com.example.openservices.databinding.FragmentRequesterAccountBinding;
+import com.example.openservices.databinding.FragmentProviderAccountBinding;
 import com.example.openservices.databinding.FragmentSignUpBusinessBinding;
 import com.example.openservices.models.User;
 import com.example.openservices.responses.UserDetailsResponse;
+import com.example.openservices.ui.account.onboarding.createaccount.SignUpAccountInfoFragment;
+import com.example.openservices.ui.onboarding.AddPostFragment;
+import com.example.openservices.ui.search.SearchWorksFragment;
 import com.example.openservices.utilities.ConstantValue;
 import com.example.openservices.utilities.SharedPreferencesManager;
 import com.example.openservices.viewmodels.UserViewModel;
@@ -24,9 +27,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-public class RequesterAccountFragment extends Fragment {
+public class ProviderAccountFragment extends Fragment {
 
-    private FragmentRequesterAccountBinding dataBiding;
+    private FragmentProviderAccountBinding dataBiding;
     private FragmentActivity activity;
     private Context context;
 
@@ -45,7 +48,7 @@ public class RequesterAccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         dataBiding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_requester_account, container, false);
+                inflater, R.layout.fragment_provider_account, container, false);
         View view = dataBiding.getRoot();
         activity = getActivity();
         context = getContext();
@@ -60,6 +63,7 @@ public class RequesterAccountFragment extends Fragment {
 
         return view;
     }
+
 
     private void getUserInfoInfo() {
         dataBiding.setIsLoadingInfo(true);
@@ -99,18 +103,31 @@ public class RequesterAccountFragment extends Fragment {
     }
 
     private void checkInteractions() {
-        dataBiding.buttonEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editProfile();
-            }
-        });
         dataBiding.imageButtonLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logOutUser();
             }
         });
+        dataBiding.buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editProfile();
+            }
+        });
+        dataBiding.buttonAddPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNewPost();
+            }
+        });
+    }
+
+    private void addNewPost() {
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        fragmentTransaction.add(R.id.main_frame_layout, new AddPostFragment()).addToBackStack(null).commit();
     }
 
     private void logOutUser() {
